@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="googlefd67e470c354b9de.html">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.simba-fs.dev","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="其他有利資料專案simply.js這是我在做完幾個 Discord 機器人以及接觸到 expressjs 之後做出來的一個 Discord Bot Framework，他包含了簡便的命令定義和 echo。他可以幫助開發者快速建立新的機器人，為以後的專案建立基礎架構。 server tool在管理伺服器的過程中，我發現 log 檔太長，不易閱讀與分析，所以寫了這一組 shell script，主要功">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simba Fs&#39; Blog">
+<meta property="og:url" content="https://blog.simba-fs.dev/autobiography/cs/others.html">
+<meta property="og:site_name" content="Simba Fs&#39; Blog">
+<meta property="og:description" content="其他有利資料專案simply.js這是我在做完幾個 Discord 機器人以及接觸到 expressjs 之後做出來的一個 Discord Bot Framework，他包含了簡便的命令定義和 echo。他可以幫助開發者快速建立新的機器人，為以後的專案建立基礎架構。 server tool在管理伺服器的過程中，我發現 log 檔太長，不易閱讀與分析，所以寫了這一組 shell script，主要功">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/simplyjs.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/serverTool.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/aurl.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/slides.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/daniel.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/ckshPost.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/yt-dl-tool.png">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/SITCON.jpg">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/HoC.jpg">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/club-1.jpg">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/club-2.jpg">
+<meta property="og:image" content="https://blog.simba-fs.dev/autobiography/other/club-4.png">
+<meta property="article:published_time" content="2020-09-27T12:34:00.000Z">
+<meta property="article:modified_time" content="2020-09-27T12:34:00.000Z">
+<meta property="article:author" content="Simba Fs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.simba-fs.dev/autobiography/other/simplyjs.png">
+
+<link rel="canonical" href="https://blog.simba-fs.dev/autobiography/cs/others">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title> | Simba Fs' Blog
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175823992-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175823992-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Simba Fs' Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Simba Fs' Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">52</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">65</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/simba-fs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-TW">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/autobiography/">AUTOBIOGRAPHY</a></li>
+            <li><a href="/autobiography/cs/">CS</a></li>
+            <li>OTHERS</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="其他有利資料"><a href="#其他有利資料" class="headerlink" title="其他有利資料"></a>其他有利資料</h1><h2 id="專案"><a href="#專案" class="headerlink" title="專案"></a>專案</h2><h3 id="simply-js"><a href="#simply-js" class="headerlink" title="simply.js"></a><a target="_blank" rel="noopener" href="https://github.com/simba-fs/simply.js">simply.js</a></h3><p>這是我在做完幾個 Discord 機器人以及接觸到 expressjs 之後做出來的一個 Discord Bot Framework，他包含了簡便的命令定義和 echo。他可以幫助開發者快速建立新的機器人，為以後的專案建立基礎架構。<br><img data-src="/autobiography/other/simplyjs.png" alt="simply"></p>
+<h3 id="server-tool"><a href="#server-tool" class="headerlink" title="server tool"></a>server tool</h3><p>在管理伺服器的過程中，我發現 log 檔太長，不易閱讀與分析，所以寫了這一組 shell script，主要功能是分析伺服器的 log file，可以把來源 ip、請求時間排序並且以圖像化方式呈現。<br><img data-src="/autobiography/other/serverTool.png" alt="server-tool"></p>
+<h3 id="aurl"><a href="#aurl" class="headerlink" title="aurl"></a><a target="_blank" rel="noopener" href="https://url.ckcsc.net">aurl</a></h3><p>這個專案主要是透過 expressjs 和 mongoose 實現短網址，expressjs 架設網頁伺服器，mongoose 操作資料庫，模板引擎是 ejs。在最近我也把他打包成 docker image，在 <a target="_blank" rel="noopener" href="https://github.com/simba-fs/aurl-docker-deploy">aurl-docker-compose</a> 提供 docker-compose.yml 可以快速在 docker 開啟主程式和 mongodb server。<br><img data-src="/autobiography/other/aurl.png" alt="aurl"></p>
+<h3 id="slides"><a href="#slides" class="headerlink" title="slides"></a><a target="_blank" rel="noopener" href="https://slides.simba-fs.dev">slides</a></h3><p>這個網站可以把存在 GitHub 上的 markdown 檔案轉成簡報，並提供多種主題替換，而且再次造訪的時候會預設上一次使用的主題。<br><img data-src="/autobiography/other/slides.png" alt="slides"></p>
+<h3 id="remind-Daniel"><a href="#remind-Daniel" class="headerlink" title="remind Daniel"></a><a target="_blank" rel="noopener" href="https://github.com/simba-fs/daniel">remind Daniel</a></h3><p>這個專案實作了登入和註冊還有管理員系統，另外這次的資料庫選用的是 sqlite3，因為 sqlite3 基於檔案的特性，這個專案在搬移的時候只需要複製檔案就可以了，不需要另外再開一個資料庫伺服器。<br><img data-src="/autobiography/other/daniel.png" alt="daniel"></p>
+<h3 id="cksh-post"><a href="#cksh-post" class="headerlink" title="cksh-post"></a><a target="_blank" rel="noopener" href="https://github.cim/simba-fs/cksh-post">cksh-post</a></h3><p>這是一個 Discord bot，是透過 simply.js 製作。功能是每天兩次從學校校網抓網路中心的公告，因為每次學校要斷電的時候，公告到斷電時間差都很短，通常是一天。為了能提早安全的把伺服器關機，所以我寫了這個 bot 可以幫我們每天檢查新的公告。<br><img data-src="/autobiography/other/ckshPost.png" alt="ckshPost"></p>
+<h3 id="yt-dl"><a href="#yt-dl" class="headerlink" title="yt-dl"></a><a target="_blank" rel="noopener" href="https://github.com/simba-fs/yt-dl-tool">yt-dl</a></h3><p>我平常聽的音樂都是從 youtube 下載，但是下載下來的 mp3 檔名都很長，我得要每一個重新命名，所以我寫這個 shell script，會根據輸入的歌單批次從 youtube 下載成 mp3 並重新命名。他使用 youtube-dl 下載。<br><img data-src="/autobiography/other/yt-dl-tool.png" alt="yt-dl-tool"></p>
+<h3 id="signup"><a href="#signup" class="headerlink" title="signup"></a><a target="_blank" rel="noopener" href="https://github.com/simba-fs/signup">signup</a></h3><p>在幾次實作登入的經驗中，我發現註冊時驗證 email 是最麻煩的一步驟。而這個套件可以用一行程式完成註冊的 API。這個套件提供一個 express middleware，包含註冊的 API，還可以透過寄發電子郵件驗證。範例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(signup(User));</span><br><span class="line"></span><br><span class="line"><span class="comment">// User 是 mongoose 的 model 物件</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="pool"><a href="#pool" class="headerlink" title="pool"></a><a target="_blank" rel="noopener" href="https://github.com/simba-fs/pool">pool</a></h3><p>這個是一個 node package，是一個 Set 的擴充，會在指定時間後刪除加入的內容，可以應用在短時效性的 token，例如 signup 的電子郵件驗證的 token 管理。</p>
+<h2 id="研習課程、社群參與"><a href="#研習課程、社群參與" class="headerlink" title="研習課程、社群參與"></a>研習課程、社群參與</h2><h3 id="SITCON"><a href="#SITCON" class="headerlink" title="SITCON"></a>SITCON</h3><p>學生計算機年會，以學生為本、由學生自發舉辦，長期投身學生資訊教育與推廣開源精神，希望引領更多學子踏入資訊的殿堂。在今年的年會中我最印象深刻的是李弘毅教授的「機器學習的關鍵下一步」，希望明年能參加籌辦或是以講者的身份參加。<br><img data-src="/autobiography/other/SITCON.jpg" alt="SITCON"></p>
+<h3 id="Hour-of-Coding"><a href="#Hour-of-Coding" class="headerlink" title="Hour of Coding"></a>Hour of Coding</h3><p>這個活動最初是由美國 code.org 主辦，教小孩寫程式的活動，透過一天或是更短的時間激發孩子對於程式的興趣，後來發展成世界各地的組織在每年 11 到 12 月自發舉辦。我參加的這場是由 SITCON 主辦，地點在土城樂利國小。在活動中我擔任志工，負責教小朋友寫程式。他們用的程式語言是類似 Scratch 的圖形化程式語言，透過拖拉程式方塊達到特定目標，例如說點亮燈泡、到達指定地點等等。<br><img data-src="/autobiography/other/HoC.jpg" alt="HoC"></p>
+<h2 id="社團活動"><a href="#社團活動" class="headerlink" title="社團活動"></a>社團活動</h2><h3 id="聯課"><a href="#聯課" class="headerlink" title="聯課"></a>聯課</h3><p>聯課活動是由成功電研、建中資訊、中山資研和景美電資合辦的活動，會安排各種方面的課程，有網頁伺服器、機器學習、量子運算等等。</p>
+<p><img data-src="/autobiography/other/club-1.jpg" alt="club-1"></p>
+<blockquote>
+<p>HTML 課之後的合照</p>
+</blockquote>
+<p><img data-src="/autobiography/other/club-2.jpg" alt="club-2"></p>
+<blockquote>
+<p>合照</p>
+</blockquote>
+<p><img data-src="/autobiography/other/club-4.png" alt="club-4"></p>
+<blockquote>
+<p>我的授課照片</p>
+</blockquote>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/autobiography/">AUTOBIOGRAPHY</a></li>
+            <li><a href="/autobiography/cs/">CS</a></li>
+            <li>OTHERS</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%9C%89%E5%88%A9%E8%B3%87%E6%96%99"><span class="nav-number">1.</span> <span class="nav-text">其他有利資料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%88%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">專案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#simply-js"><span class="nav-number">1.1.1.</span> <span class="nav-text">simply.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-tool"><span class="nav-number">1.1.2.</span> <span class="nav-text">server tool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aurl"><span class="nav-number">1.1.3.</span> <span class="nav-text">aurl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slides"><span class="nav-number">1.1.4.</span> <span class="nav-text">slides</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remind-Daniel"><span class="nav-number">1.1.5.</span> <span class="nav-text">remind Daniel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cksh-post"><span class="nav-number">1.1.6.</span> <span class="nav-text">cksh-post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yt-dl"><span class="nav-number">1.1.7.</span> <span class="nav-text">yt-dl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#signup"><span class="nav-number">1.1.8.</span> <span class="nav-text">signup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pool"><span class="nav-number">1.1.9.</span> <span class="nav-text">pool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%94%E7%BF%92%E8%AA%B2%E7%A8%8B%E3%80%81%E7%A4%BE%E7%BE%A4%E5%8F%83%E8%88%87"><span class="nav-number">1.2.</span> <span class="nav-text">研習課程、社群參與</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SITCON"><span class="nav-number">1.2.1.</span> <span class="nav-text">SITCON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hour-of-Coding"><span class="nav-number">1.2.2.</span> <span class="nav-text">Hour of Coding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E5%9C%98%E6%B4%BB%E5%8B%95"><span class="nav-number">1.3.</span> <span class="nav-text">社團活動</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%AF%E8%AA%B2"><span class="nav-number">1.3.1.</span> <span class="nav-text">聯課</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Simba Fs"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">Simba Fs</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/simba-fs" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;simba-fs" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:simba.fs+blog@gmail.com" title="E-Mail → mailto:simba.fs+blog@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/simba.fs" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;simba.fs" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simba Fs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+</body>
+</html>

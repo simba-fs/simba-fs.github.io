@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>HTML form button</title>
+    <url>/frontend/HTML-form-button/</url>
+    <content><![CDATA[<p>HTML 的 form 裡的按鈕預設是 submit<br>所以要加上 <code>type=&quot;button&quot;</code> 它才不會太心急送出表單</p>
+<p>按鈕的 css 「按下」 selector 好像可已用 <code>:active</code>、<code>:focus</code><br>但是我兩個失敗了</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>firefox-event-listener-breakpoint</title>
+    <url>/frontend/firefox-event-listener-breakpoint/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>最近在用 jquery 但是不知道為什麼每次 debugger 都會跳出一個通知<br><img data-src="/images/firefox-event-listener-breakpoint/1.png" alt="1.png"><br>很煩</p>
+<h1 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h1><p>後來尋線發現原來是 firefox 好心的 debugger 在 DOM 發生改變的時候通知我<br>在 <F12> 裡面 Debugger 頁籤左下有個拉頁叫「Event Listener Breakpoints」<br>把裡面的東西都點掉就好了<br>就是那個 DOM Mutation<br><img data-src="/images/firefox-event-listener-breakpoint/2.png" alt="2.png"></p>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>我原本還以為是 jquery 的問題<br>原來是好心的 firefox 啊</p>
+<hr>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><img data-src="https://developer.mozilla.org/en-US/docs/Tools/Debugger/Set_event_listener_breakpoints" alt="MDN"></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>firefox</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jquery</title>
+    <url>/frontend/jquery/</url>
+    <content><![CDATA[<p>今天寫 jquery 遇到了一些坑</p>
+<h1 id="1-submit"><a href="#1-submit" class="headerlink" title="1. submit"></a>1. submit</h1><p><code>.submit()</code> 是要加在 <code>form</code> 上而不是 <code>submit button</code> 上</p>
+<h1 id="2-this"><a href="#2-this" class="headerlink" title="2. this"></a>2. this</h1><p>在 jquery 裡有時後會用到 handler<br>正常情況下可以用 arrow function<br>但是如果用到 <code>this</code> 就不能用 arrow function 了<br>（這不只是 jquery, JS 都是這樣）</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>meta-tag</title>
+    <url>/frontend/meta-tag/</url>
+    <content><![CDATA[<p>今天為了幫 <a href="https://daniel.simba.nctu.me">Let’s Remind Daniel</a> 做 SEO<br>在 <a href="https://free.com.tw/mega-tags/">免費資源網路社群</a> 找到了一個工具可以直接生成<br>還有一個可以測試的工具</p>
+<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a href="https://megatags.co/">生成</a><br><a href="https://www.heymeta.com/">測試</a></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>meta</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Action 自動部署 hexo</title>
+    <url>/hexo/GitHub-Action-%E8%87%AA%E5%8B%95%E9%83%A8%E7%BD%B2-hexo/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本來部署 hexo 都是手動下指令，但是這樣在手機上因為沒辦法裝 hexo ,所以一直不能在手機上寫文章。剛好想到 GitHub Action 可以滿足我的需求，上網查了一下資料發現蠻多人有和我一樣的需求，這次參考的是 <a href="https://owlran.github.io/2020/04/26/hexo-blog-github-action/">owlran 大大的文章</a>。</p>
+<h1 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h1><p>因為要部署到 GitHub repo，最方便的方法當然是 ssh key 啦。</p>
+<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h2><p>首先隨便找個資料夾產生一組 ssh key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -f deploy-key</span><br></pre></td></tr></table></figure>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><p>再來要讓 GitHub 知道你的 ssh key（public/secret 都要）</p>
+<h3 id="public-key"><a href="#public-key" class="headerlink" title="public key"></a>public key</h3><p>public key 是要放在你的 <code>&lt;username&gt;.github.io</code> 的 repo 下  </p>
+<blockquote>
+<p><username>.ggithub.io -&gt; settings -&gt; Deploy keys -&gt; add deploy key  </p>
+</blockquote>
+<p>新增一個 ssh key，名字叫 <code>DEPLOY_KEY_PUB</code><br>把 <code>depoly-key.pub</code> 的內容貼上，記得下面的勾勾（Allow write access ）要選起來  </p>
+<h3 id="secret-key"><a href="#secret-key" class="headerlink" title="secret key"></a>secret key</h3><p>secret key 要放在你存放部落格檔案的 repo，owlran 大大是放在同一個 <a href="https://github.com/owlran/owlran.github.io">repo</a> 不同 branch，我是放在兩個不同 repo，其中放部落格檔案的 repo 我設成 private repo（因為我放了一些 gitalk 要用的 clientSecret，這個不能公開）。<br>總之到你要放部落格檔案的那個 repo，新增一個 secret，等等要再 GitHub Action 裡面調用。</p>
+<blockquote>
+<p>你放部落格檔案的那個 repo -&gt; reposettings -&gt; Secrets -&gt; add a new secret  </p>
+</blockquote>
+<p>名字是 <code>DEPLOY_KEY</code>，內容是 <code>deploy-key</code> 裡面的東西<br>接下來就可以進入到 Action 了</p>
+<h1 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h1><p>我的 Action 內容基本上是複製 owlran 大大的，但是因為 repo 結構有小小不同所以我了一些修改，如果你要改的話應該是不難才對，GitHub Action 的設定檔我覺得還好懂的。<br>這個設定是放在你放部落格檔案的那個 repo</p>
+<blockquote>
+<p>注意：第 27, 28 行的 <code>username</code> 和 <code>email</code> 記得改成你的，不然 git commit message 會有問題</p>
+</blockquote>
+<blockquote>
+<p>你放部落格檔案的那個 repo -&gt; Action -&gt; New workflow -&gt; set up a workflow yourself</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span> </span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node_version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node_version:</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node_version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Configuration</span> <span class="string">environment</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">DEPLOY_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.DEPLOY_KEY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$DEPLOY_KEY&quot; | tr -d &#x27;\r&#x27; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          echo &quot;$DEPLOY_KEY&quot;</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">git</span> <span class="string">config</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">username:</span> </span><br><span class="line">          <span class="attr">email:</span> </span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;$username&quot;</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;$email&quot;</span></span><br><span class="line"><span class="string">          git config --global commit.gpgsign true</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Imoport</span> <span class="string">GPG</span> <span class="string">key</span></span><br><span class="line">        <span class="attr">id:</span> <span class="string">import_gpg</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">crazy-max/ghaction-import-gpg@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">git_user_signingkey:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">git_commit_gpgsign:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">env:</span> </span><br><span class="line">          <span class="attr">GPG_PRIVATE_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GPG_PRIVATE_KEY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">PASSPHRASE:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.PASSPHRASE</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Update</span> <span class="string">themes</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          git submodule init</span></span><br><span class="line"><span class="string">          git submodule update</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm i -g hexo-cli</span></span><br><span class="line"><span class="string">          npm i</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Clean</span> <span class="string">file</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean  </span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="string">hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo generate</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">list</span> <span class="string">posts</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo list post</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+        <tag>github-action</tag>
+        <tag>CI/Cl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>audo-depoly-by-github-action</title>
+    <url>/hexo/audo-depoly-by-github-action/</url>
+    <content><![CDATA[<h1 id="自動部屬部落格"><a href="#自動部屬部落格" class="headerlink" title="自動部屬部落格"></a>自動部屬部落格</h1><p>參考網址：<a href="https://op30132.github.io/2020/02/05/github-action/">https://op30132.github.io/2020/02/05/github-action/</a><br>生成公私鑰時不用在部落格根目錄，記的不要加入 git，要刪掉</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">HEXO</span> <span class="string">CI</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">strategy:</span></span><br><span class="line">      <span class="attr">matrix:</span></span><br><span class="line">        <span class="attr">node-version:</span> [<span class="number">12.</span><span class="string">x</span>]</span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v1</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node-version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node-version</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Configuration</span> <span class="string">environment</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">HEXO_DEPLOY_PRI:</span> <span class="string">$&#123;&#123;secrets.HEXO_DEPLOY_PRI&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$HEXO_DEPLOY_PRI&quot; | tr -d &#x27;\r&#x27; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;simba-fs&quot;</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;simba-fsgmail.com&quot;</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm i -g hexo-cli</span></span><br><span class="line"><span class="string">          npm i -S hexo </span></span><br><span class="line"><span class="string">          npm i</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          git checkout hexo</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo config</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span> <span class="string">hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo new post telsst</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">list</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          ls source/_posts</span></span><br><span class="line"><span class="string">          PWD=$(pwd) hexo list post</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">clean</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">generate</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo g</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">d</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github action</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gitalk</title>
+    <url>/hexo/gitalk/</url>
+    <content><![CDATA[<h1 id="啟用-gitalk-留言"><a href="#啟用-gitalk-留言" class="headerlink" title="啟用 gitalk 留言"></a>啟用 gitalk 留言</h1><ol>
+<li>到<a href="https://github.com/settings/applications/new">這個網址</a>填資料  </li>
+<li>加入下面的片段到<code>_config.yml</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">disqus:</span><br><span class="line">    enabled: false </span><br><span class="line">gitalk:</span><br><span class="line">    enabled: true</span><br><span class="line">    owner: &lt;username&gt;</span><br><span class="line">    repo: &lt;username&gt;.github.io</span><br><span class="line">    admin: [&#x27;&lt;username&gt;&#x27;]</span><br><span class="line">    clientID: &lt;clientID&gt;</span><br><span class="line">    clientSecret: &lt;clientSecret&gt;</span><br></pre></td></tr></table></figure></li>
+<li>加入下面的片段到<code>themes/cactus/layout/_partial/comments.ejs</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;% if(page.comments &amp;&amp; theme.gitalk.enabled)&#123; %&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">            clientID: &#x27;&lt;%= theme.gitalk.clientID %&gt;&#x27;,</span><br><span class="line">            clientSecret: &#x27;&lt;%= theme.gitalk.clientSecret %&gt;&#x27;,</span><br><span class="line">            id: md5(window.location.pathname),</span><br><span class="line">            repo: &#x27;&lt;%= theme.gitalk.repo %&gt;&#x27;,</span><br><span class="line">            owner: &#x27;&lt;%= theme.gitalk.owner %&gt;&#x27;,</span><br><span class="line">            admin: &#x27;&lt;%= theme.gitalk.admin %&gt;&#x27;,</span><br><span class="line">            distractionFreeMode: &#x27;&lt;%= theme.gitalk.on %&gt;&#x27;</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(&#x27;gitalk-container&#x27;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></li>
+<li>完成！注意 gitalk 在本地端是沒有用的喔！記得 <code>hexo g; hexo d</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo-cli-extras</title>
+    <url>/hexo/hexo-cli-extras/</url>
+    <content><![CDATA[<h1 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h1><p>因為 hexo 本身沒有提供編輯器<br>所以每次在編輯文章時都需要打路徑<br>這個插件他會去找到你的文章<br>然後給你選要編輯那一個<br>這只是其中一個功能<br>還有<strong>重新命名</strong>、<strong>刪除</strong>、<strong>隔離</strong>和<strong>加入</strong><br><strong>隔離</strong>是將其他文章暫時隔離，<strong>加入</strong>是將文章加回來  </p>
+<hr>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i hexo-cli-extras</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="編輯"><a href="#編輯" class="headerlink" title="編輯"></a>編輯</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo edit [title] </span><br></pre></td></tr></table></figure>
+<p>這個會列出你的文章給你選擇<br>按上下健移動<br>[enter] 選擇<br>非常人性的設計</p>
+<h2 id="重新命名"><a href="#重新命名" class="headerlink" title="重新命名"></a>重新命名</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo rename &lt;old name&gt; -n &lt;new name&gt;</span><br></pre></td></tr></table></figure>
+<p>他會給你選擇要不要把標題檔名都換掉,或是也可以取消<br>非常方便的設計</p>
+<h2 id="隔離"><a href="#隔離" class="headerlink" title="隔離"></a>隔離</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo isloate [filename]</span><br></pre></td></tr></table></figure>
+<p>如果加上<code>-a / --all</code>,會忽略檔名將所有文章隔離</p>
+<h2 id="加入"><a href="#加入" class="headerlink" title="加入"></a>加入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo integrate</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo-config</title>
+    <url>/hexo/hexo-config/</url>
+    <content><![CDATA[<h1 id="各種設定值嘗試"><a href="#各種設定值嘗試" class="headerlink" title="各種設定值嘗試"></a>各種設定值嘗試</h1><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">- # highlight: rainbow</span></span><br><span class="line"><span class="addition">+ highlight: rainbow</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">7122</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">7122</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">7122</span>;</span><br><span class="line">cout &lt;&lt; a;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Color-scheme"><a href="#Color-scheme" class="headerlink" title="Color scheme"></a>Color scheme</h2><h3 id="dark"><a href="#dark" class="headerlink" title="dark"></a>dark</h3><p><img data-src="/images/colorscheme/dark.png" alt="dark"></p>
+<h3 id="light"><a href="#light" class="headerlink" title="light"></a>light</h3><p><img data-src="/images/colorscheme/light.png" alt="light"></p>
+<h3 id="classic"><a href="#classic" class="headerlink" title="classic"></a>classic</h3><p><img data-src="/images/colorscheme/classic.png" alt="classic"></p>
+<h3 id="white"><a href="#white" class="headerlink" title="white"></a>white</h3><p><img data-src="/images/colorscheme/white.png" alt="white"></p>
+<hr>
+<h2 id="RSS-setup"><a href="#RSS-setup" class="headerlink" title="RSS setup"></a>RSS setup</h2><h3 id="configt-yml"><a href="#configt-yml" class="headerlink" title="_configt.yml"></a>_configt.yml</h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># RSS</span></span><br><span class="line"><span class="attr">plubin:</span> </span><br><span class="line"><span class="bullet">-</span> <span class="string">hexo-generator-feed</span></span><br><span class="line"><span class="comment"># Feed Atom</span></span><br><span class="line"><span class="attr">feed:</span> </span><br><span class="line">  <span class="attr">type:</span> <span class="string">atom</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">atom.xml</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h3 id="theme-yourTheme-config-yml"><a href="#theme-yourTheme-config-yml" class="headerlink" title="theme/yourTheme/_config.yml"></a>theme/yourTheme/_config.yml</h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">rss:</span> <span class="string">/atom.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>然後到這裡 <a href="#">https://your.site/atom.xml</a><br>這是 <a href="/atom.xml">範例</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>cactus</tag>
+        <tag>highlight</tag>
+        <tag>RSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo-installation</title>
+    <url>/hexo/hexo-installation/</url>
+    <content><![CDATA[<h1 id="把-hexo-部屬到-gh-page"><a href="#把-hexo-部屬到-gh-page" class="headerlink" title="把 hexo 部屬到 gh-page"></a>把 hexo 部屬到 gh-page</h1><p>執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm i hexo -g</span><br><span class="line">$ hexo init blog</span><br><span class="line">$ cd blog</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>_config.yml</code> 刪除最後兩行，改成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:&lt;username&gt;/&lt;repo&gt;</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm i hexo-deployer-git</span><br><span class="line">$ hexo depoly</span><br></pre></td></tr></table></figure>
+
+<p>在 repo 設定中 <code>GitHub Pages</code> 隨便選一個 Jekyll theme，這樣才不會 404</p>
+<blockquote>
+<p>地雷：在之後都部屬要加上 <code>-g</code> </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
+<p>不然不會生效</p>
+<p>完成!</p>
+<h1 id="將原始碼保存"><a href="#將原始碼保存" class="headerlink" title="將原始碼保存"></a>將原始碼保存</h1><p>執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git checkout -b hexo</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m init</span><br><span class="line">$ git push -u origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>完成</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>加入 google search 和 sitemap</title>
+    <url>/hexo/%E5%8A%A0%E5%85%A5-google-search-%E5%92%8C-sitemap/</url>
+    <content><![CDATA[<h1 id="前置設定"><a href="#前置設定" class="headerlink" title="前置設定"></a>前置設定</h1><h2 id="npm-安裝-hexo-generator-sitemap"><a href="#npm-安裝-hexo-generator-sitemap" class="headerlink" title="npm 安裝 hexo-generator-sitemap"></a>npm 安裝 <code>hexo-generator-sitemap</code></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -S hexo-generator-sitemap </span><br></pre></td></tr></table></figure>
+
+<h2 id="設定插件"><a href="#設定插件" class="headerlink" title="設定插件"></a>設定插件</h2><p>將以下內容加到 <code>_config.yml</code>  </p>
+<blockquote>
+<p>注意空白  </p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># sitemap</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="驗證網域"><a href="#驗證網域" class="headerlink" title="驗證網域"></a>驗證網域</h1><p>如果你的 hexo 是架在自己的網域可以跳過這步<br>因為我的 hexo 是 託管在 GitHub page，在 Google Search Console 驗證的時候沒辦法用網域，所以要放一個特別的檔案到我們的網站根目錄  </p>
+<ol>
+<li>首先到 <a href="https://search.google.com/search-console/">Google Search Console</a> 新增一個網域<br>選擇右邊，輸入你的網址<br><img data-src="/images/google-search-analytics/addDomain.png" alt="add demain"></li>
+<li>下載提供的 html 並放到 <code>source/</code> 資料夾<br><img data-src="/images/google-search-analytics/verifyDomain.png" alt="download html file and place to source/"></li>
+<li>忽略<br>接下來會遇到 hexo 在生成的時候把這個 html 也放到模板裡面，所以我們要把他加入忽略清單裡面<br>在 <code>_config.yml</code> 裡面找到 <code>skip_render</code><br>把直接檔名寫在後面或是用清單都可以  <blockquote>
+<p>注意空白  </p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接寫</span></span><br><span class="line"><span class="attr">skip_render:</span> <span class="string">&#x27;googlebabababababa.html&#x27;</span></span><br><span class="line"><span class="comment"># 或是用清單</span></span><br><span class="line"><span class="attr">skip_render:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;googlebabababababa.html&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>按下驗證，完成</li>
+</ol>
+<h1 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h1><p>驗證好了之後進入 Google Search Console，在側邊欄找到 <code>索引</code> -&gt; <code>Sitemap</code><br>輸入 <code>sitemap.xml</code> 按提交<br><img data-src="/images/google-search-analytics/sitemap.png" alt="sitemap"></p>
+<h1 id="Google-analytics"><a href="#Google-analytics" class="headerlink" title="Google analytics"></a>Google analytics</h1><p>待新增</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章更新時間錯亂問題</title>
+    <url>/hexo/%E6%96%87%E7%AB%A0%E6%9B%B4%E6%96%B0%E6%99%82%E9%96%93%E9%8C%AF%E4%BA%82%E5%95%8F%E9%A1%8C/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>在設定完 GitHub Action 之後，我發現我的文章的更新時間都錯了，會全部變成當天日期。但是本地生成的就沒有這個問題，經過一番盤查和猜測後，我發現問題是因為 git 不會把 modified date 紀錄，因為每台電腦的時區都是不一樣的，紀錄起來沒有意義。但是我們需要這項 meta data，所以我們就要自己想法紀錄</p>
+<h1 id="解法-v1-0"><a href="#解法-v1-0" class="headerlink" title="解法 v1.0"></a>解法 v1.0</h1><p>首先，因為每一篇文章 hexo 都會紀錄建立時間，所以我們可以直接把他抓出來，然後把檔案的更新時間設成這個時間就可以啦！</p>
+<h2 id="更改檔案的-modified-time"><a href="#更改檔案的-modified-time" class="headerlink" title="更改檔案的 modified time"></a>更改檔案的 modified time</h2><p>這個功能只要用我們最熟悉的 <code>touch</code> 就可以做到了。一般我們使用 <code>touch</code> 的時候會把 modified time 改成當下時間，那要改任意時間只要加上 <code>-t</code> 選項就可以啦  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-t STAMP</span><br><span class="line">    use [[CC]YY]MMDDhhmm[.ss] instead of current time</span><br></pre></td></tr></table></figure>
+<p>假設我們有個檔案 <code>tmp</code> ，我想把他的日期改成 <code>1999/3/23 12:32:33</code> ，那我可以這樣下指令  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ted timeouch -t&#x27;19993231232.33&#x27; tmp</span><br></pre></td></tr></table></figure>
+
+<h2 id="抓出檔名、日期"><a href="#抓出檔名、日期" class="headerlink" title="抓出檔名、日期"></a>抓出檔名、日期</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git create time</span></span><br><span class="line">grep -rnw <span class="built_in">source</span>/_posts -e <span class="string">&#x27;date&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>output:（這裡的 <code>date:</code> 後面我多加了一個空白，原因後面會說） </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source/_posts/hexo-installation.md:3:date:  2020-02-10 17:26:45</span><br><span class="line">source/_posts/blessed.md:3:date:  2020-02-17 23:24:10</span><br><span class="line">source/_posts/bash.md:3:date:  2020-02-16 22:15:10</span><br><span class="line">source/_posts/hexo-cli-extras.md:3:date:  2020-02-11 21:26:30</span><br><span class="line">source/_posts/remind-daniel.md:3:date:  2020-03-15 21:35:25</span><br><span class="line">source/_posts/jquery.md:3:date:  2020-03-15 11:38:47</span><br><span class="line">source/_posts/nginx-reverse-proxy-setup.md:3:date:  2020-02-13 10:34:58</span><br><span class="line">source/_posts/nginx-ui.md:3:date:  2020-06-23 22:50:29</span><br><span class="line">source/_posts/reverse-ssh.md:3:date:  2020-02-23 21:24:34</span><br><span class="line">source/_posts/webpack-react.md:3:date:  2020-06-28 22:39:57</span><br><span class="line">source/_posts/mxlinux-change-workspace.md:3:date:  2020-05-08 17:59:22</span><br></pre></td></tr></table></figure>
+
+<h2 id="分離時間，檔名"><a href="#分離時間，檔名" class="headerlink" title="分離時間，檔名"></a>分離時間，檔名</h2><p>觀察他的輸出<br>檔名的部份是在以冒號分隔的第一欄<br>日期/時間是在以空格分隔的第二、三欄<br>那我們就可以根據這個把他們分離出來</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># get name, time</span></span><br><span class="line">grep -rnw <span class="built_in">source</span>/_posts -e <span class="string">&#x27;date&#x27;</span> &gt; t</span><br><span class="line">cut -d: -f1 t &gt; name</span><br><span class="line">cut -d<span class="string">&#x27; &#x27;</span> -f2,3 t &gt; time</span><br></pre></td></tr></table></figure>
+<p>output:（節錄，這邊沒有對的很好）<br>name: </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source/_posts/sqlite.md</span><br><span class="line">source/_posts/ssh-tunnel.md</span><br><span class="line">source/_posts/unix-socket.md</span><br><span class="line">source/_posts/webpack-react.md</span><br><span class="line">source/_posts/youtube-dl.md</span><br><span class="line">source/_posts/加入-google-search-和-sitemap.md</span><br></pre></td></tr></table></figure>
+<p>time:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2020-02-24 22:14:36</span><br><span class="line">2020-02-23 14:30:22</span><br><span class="line">2020-06-28 22:39:57</span><br><span class="line">2020-03-04 22:48:20</span><br><span class="line">2020-08-19 22:37:52</span><br><span class="line">2020-08-20 23:33:13</span><br></pre></td></tr></table></figure>
+
+<h2 id="處理日期的格式"><a href="#處理日期的格式" class="headerlink" title="處理日期的格式"></a>處理日期的格式</h2><p>在 <code>更改檔案的 modified time</code> 提到的日期格式和我們抓出來的不太一樣，所以我們需要做一些處理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cut -d&#x27; &#x27; -f2,3 t | sed &#x27;s/[- ]//g&#x27; | sed &#x27;s/://&#x27; | sed &#x27;s/:/./&#x27; &gt; time</span><br></pre></td></tr></table></figure>
+<p>這樣就可以成功轉換日期格式了</p>
+<h2 id="時間檔"><a href="#時間檔" class="headerlink" title="時間檔"></a>時間檔</h2><p>接下來把 <code>name</code>、<code>time</code> 合起來就變成時間擋了，這裡有一點要注意，因為我們恢復的時候是用 for 迴圈，換行和空白都會被當成切斷符號，所以檔名和時間中間的間隔符號我們選用冒號 <code>:</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">paste -d: name time &gt; source/_posts/time</span><br></pre></td></tr></table></figure>
+
+<h2 id="清垃圾"><a href="#清垃圾" class="headerlink" title="清垃圾"></a>清垃圾</h2><p>最後記得把剛才產生出來但是用不到的檔案清掉</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm t name time</span><br></pre></td></tr></table></figure>
+
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># updateDate.sh</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [[ -z <span class="variable">$1</span> ]];<span class="keyword">then</span></span><br><span class="line">  dir=<span class="string">&quot;source/_posts&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  dir=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">grep <span class="string">&#x27;date: [0-9]&#123;4&#125;&#x27;</span> <span class="variable">$dir</span>/*.md &gt; t</span><br><span class="line">cut -d: -f1 t &gt; name</span><br><span class="line">cut -d<span class="string">&#x27; &#x27;</span> -f2,3 t | sed <span class="string">&#x27;s/[- ]//g&#x27;</span> | sed <span class="string">&#x27;s/://&#x27;</span> | sed <span class="string">&#x27;s/:/./&#x27;</span> &gt; time</span><br><span class="line">paste -d: name time &gt; <span class="variable">$dir</span>/time</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(cat <span class="variable">$dir</span>/time);<span class="keyword">do</span></span><br><span class="line">  n=$(<span class="built_in">echo</span> <span class="variable">$i</span> | cut -d: -f1);</span><br><span class="line">  d=$(<span class="built_in">echo</span> <span class="variable">$i</span> | cut -d: -f2);</span><br><span class="line">  touch -t<span class="variable">$d</span> <span class="variable">$n</span>;</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">rm t name time</span><br></pre></td></tr></table></figure>
+
+<h2 id="備註"><a href="#備註" class="headerlink" title="備註"></a>備註</h2><p>剛剛有說到在這份教學中的 <code>date:</code> 都多加一個空白，原因是因為 grep 在抓時候不會只抓第一個，為了避免抓到錯的所以我故意讓他不匹配，不然再生成時間檔的時候會出錯，所以你們的文章中如果出現會匹配 <code>date: [0-9]&#123;4&#125;</code> 的字串，記得要做一下手腳</p>
+<h1 id="解法-v2-0"><a href="#解法-v2-0" class="headerlink" title="解法 v2.0"></a>解法 v2.0</h1><p>上一個作法雖然可行，但是有一個缺點，就是他的更新時間都會是建立時間，不會是 modified time，所以解法二誕生了<br>其實很簡單，改上面的一小行就好了。首先用 <code>stat</code> 取出檔案的 modified time</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">stat</span> -c %y <span class="built_in">source</span>/_posts/*.md &gt; time</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2020-03-04 22:48:20.000000000 +0800</span><br><span class="line">2020-08-19 22:37:52.000000000 +0800</span><br><span class="line">2020-08-21 22:15:44.366513358 +0800</span><br><span class="line">2020-07-04 10:17:39.000000000 +0800</span><br></pre></td></tr></table></figure>
+<p>然後在經過適當的轉換變成我們要的格式就完成啦！</p>
+<h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># storePostTime.sh</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [[ -z <span class="variable">$1</span> ]];<span class="keyword">then</span></span><br><span class="line">  dir=<span class="built_in">source</span>/_posts</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  dir=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">ls <span class="variable">$dir</span>/*.md &gt; name</span><br><span class="line"><span class="built_in">stat</span> -c %y <span class="variable">$dir</span>/*.md |\</span><br><span class="line">  cut -d<span class="string">&#x27; &#x27;</span> -f1,2 |\</span><br><span class="line">  sed <span class="string">&#x27;s/[- ]//g&#x27;</span> |\</span><br><span class="line">  sed <span class="string">&#x27;s/://&#x27;</span> |\</span><br><span class="line">  sed <span class="string">&#x27;s/:/./&#x27;</span> |\</span><br><span class="line">  cut -d. -f1,2 &gt; time</span><br><span class="line">paste -d: name time &gt; t</span><br><span class="line">mv t <span class="variable">$dir</span>/time</span><br><span class="line">rm name time</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># recorverDate.sh</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [[ -z <span class="variable">$1</span> ]];<span class="keyword">then</span></span><br><span class="line">  file=<span class="string">&quot;source/_posts/time&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  file=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(cat <span class="variable">$file</span>);<span class="keyword">do</span></span><br><span class="line">  n=$(<span class="built_in">echo</span> <span class="variable">$i</span> | cut -d: -f1);</span><br><span class="line">  d=$(<span class="built_in">echo</span> <span class="variable">$i</span> | cut -d: -f2);</span><br><span class="line">  touch -t<span class="variable">$d</span> <span class="variable">$n</span>;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>linux</tag>
+        <tag>bash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>beginning of kotlin</title>
+    <url>/kotlin/beginning-of-kotlin/</url>
+    <content><![CDATA[<h1 id="val-vs-var"><a href="#val-vs-var" class="headerlink" title="val vs var"></a>val vs var</h1><table>
+<thead>
+<tr>
+<th align="left">kotlin</th>
+<th align="left">JS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">val</td>
+<td align="left">const</td>
+</tr>
+<tr>
+<td align="left">var</td>
+<td align="left">let</td>
+</tr>
+</tbody></table>
+<h1 id="a-b"><a href="#a-b" class="headerlink" title="a..b"></a>a..b</h1><table>
+<thead>
+<tr>
+<th align="left">kotlin</th>
+<th align="left">JS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">a..b</td>
+<td align="left">Array(b-a+1).fill(0).map(i =&gt; i + a)</td>
+</tr>
+</tbody></table>
+<h1 id="when"><a href="#when" class="headerlink" title="when"></a>when</h1><h2 id="kotlin"><a href="#kotlin" class="headerlink" title="kotlin"></a>kotlin</h2><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">val</span> luckyNum = <span class="number">4</span></span><br><span class="line">	<span class="keyword">val</span> yourNum = (<span class="number">1.</span><span class="number">.6</span>).random()</span><br><span class="line">	<span class="keyword">val</span> result = <span class="keyword">when</span>(yourNum)&#123;</span><br><span class="line">		luckyNum -&gt; <span class="string">&quot;You get the lucky num <span class="subst">$&#123;luckyNum&#125;</span>&quot;</span></span><br><span class="line">		<span class="number">1</span> -&gt; <span class="string">&quot;Sorry, you get 1&quot;</span></span><br><span class="line">		<span class="number">2</span> -&gt; <span class="string">&quot;Sorry, you get 2&quot;</span></span><br><span class="line">		<span class="number">3</span> -&gt; <span class="string">&quot;Sorry, you get 3&quot;</span></span><br><span class="line">		<span class="number">4</span> -&gt; <span class="string">&quot;Sorry, you get 4&quot;</span></span><br><span class="line">		<span class="number">5</span> -&gt; <span class="string">&quot;Sorry, you get 5&quot;</span></span><br><span class="line">		<span class="number">6</span> -&gt; <span class="string">&quot;Sorry, you get 6&quot;</span></span><br><span class="line">		<span class="keyword">else</span> -&gt; <span class="string">&quot;Sorry, you get a number out of 1..6&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	println(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gpg</title>
+    <url>/linux/gpg/</url>
+    <content><![CDATA[<p>今天心血來潮想設定 GPG，網路上查了一個教學，無疑的又遇到一個坑</p>
+<h1 id="坑-amp-解法"><a href="#坑-amp-解法" class="headerlink" title="坑 &amp; 解法"></a>坑 &amp; 解法</h1><p>我按照他的作法弄完後就是沒辦法 commit<br>他說 GPG 無法簽章<br>後來我發現是我的 name 填錯（應該啦，我猜的）<br>總而言之就重新產生 GPG key 就好了<br>name 和 git 設定的一樣</p>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ gpg --full-gen-key</span><br><span class="line">$ gpg --list-secret-keys</span><br><span class="line">$ gpg --armor --export &lt;secret key&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="刪除金鑰"><a href="#刪除金鑰" class="headerlink" title="刪除金鑰"></a>刪除金鑰</h1><p>在刪除的時候分成兩步驟，刪除私鑰、刪除公鑰。在刪除之前要先知道要刪除的金鑰的 ID</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gpg --list-keys</span><br></pre></td></tr></table></figure>
+
+<p>找到那串很長的文字，那就是 ID，複製起來，他起來也許會像這樣</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JFDKSA8FEWHE29HFVC92UHFPA93WOHFVDOPA39U2</span><br></pre></td></tr></table></figure>
+
+<p>再來用兩個指令就可以刪除了，注意一定要先刪私鑰。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gpg --delete-secret-key &lt;ID&gt;</span><br><span class="line">gpg --delete-key &lt;ID&gt;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="參考教學"><a href="#參考教學" class="headerlink" title="參考教學"></a>參考教學</h1><p><a href="https://blog.puckwang.com/post/2019/sign_git_commit_with_gpg/">blog.puckwang.com</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>git</tag>
+        <tag>gpg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>isolate</title>
+    <url>/linux/isolate/</url>
+    <content><![CDATA[<p>我有一個放了很久的計畫，就是自己寫一個 OJ，因為我覺得現在的那個太難用了。<br>我很快的建立 repo 但是卻完全沒有進展，我寫了一個 shell script 幫忙編譯執行程式之後我就在也沒有動過他了<br>我沒有繼續動工的原因是我不知道如何隔離使用者提交的程式碼<br>我想過 docker 可是據說還是不安全<br>還有 chroot 但是我不知道有沒有比 docker 安全而且設定好麻煩</p>
+<p>昨天去考 TOI　入營考（當然沒進）的時候，我終於看到大名鼎鼎的 CMS 了！<br>出來之後我發現他是用一個叫 isolate 的程式來做沙箱測試<br>而且這好像是 IOI 自己寫的，應該是蠻安全的（吧？）<br>今天成功編譯過後把心得寫下來</p>
+<hr>
+<h1 id="編譯"><a href="#編譯" class="headerlink" title="編譯"></a>編譯</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git clone https://github.com/ioi/isolate/</span><br><span class="line">$ cd isolate</span><br><span class="line">$ sudo apt install asciidoc libcap-dev</span><br><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>耶！編譯/安裝完成了</p>
+<hr>
+<h1 id="建立沙箱-執行程式"><a href="#建立沙箱-執行程式" class="headerlink" title="建立沙箱/執行程式"></a>建立沙箱/執行程式</h1><p>建立好之後切到 root 去<br>用 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># isolate --init</span><br><span class="line">/var/local/lib/isolate/0</span><br></pre></td></tr></table></figure>
+<p>建立一個新的沙箱<br>他會輸出沙箱所在的目錄</p>
+<p>接下來把要執行的檔案放在 <code>/var/local/lib/isolate/0/box</code> 裡面（要給執行權）<br>hello.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">echo Hello World</span><br></pre></td></tr></table></figure>
+<p>然後</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># isolate --run hello.sh</span><br><span class="line">Hello World</span><br><span class="line">OK (0.005 sec real, 0.020 sec wall)</span><br></pre></td></tr></table></figure>
+<p>他最後會輸出執行時間和執行成功的訊息<br>其他的內容等等再補</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>sandbox</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mxlinux boot with systemd</title>
+    <url>/linux/mxlinux-boot-with-systemd/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>在 mxlinux 裡面，預設的 init 不是 systmed，這導致如果想用 systemctl 的時候就會跳出錯誤說</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System has not been booted with systemd as init system</span><br></pre></td></tr></table></figure>
+<p>像是在安裝 <code>mongodb-org</code> 的時候他就要用到 <code>systemctl</code> 然後就會出錯。</p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>其實 mxlinux 已經幫我們想好解法了，在開機選項時選 <code>Advence</code> &gt; <code>Systemd</code> 就會以 systemd 開機</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mxlinux</tag>
+        <tag>systemd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mxlinux-change-workspace</title>
+    <url>/linux/mxlinux-change-workspace/</url>
+    <content><![CDATA[<h1 id="切換工作區"><a href="#切換工作區" class="headerlink" title="切換工作區"></a>切換工作區</h1><p>今天想要在 mxlinux 中快速的切換工作區<br>我看到可以用滑鼠滾輪切換<br>可是我想要的是鍵盤快捷鍵<br>上網查了一下<br>發現可以透過 <code>Ctrl</code>+<code>Alt</code>+<code>up/down/home/end</code> 來切換</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://unix.stackexchange.com/questions/270334/how-to-move-a-window-to-another-workspace-in-xfce">https://unix.stackexchange.com/questions/270334/how-to-move-a-window-to-another-workspace-in-xfce</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mxlinux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reverse-ssh</title>
+    <url>/linux/reverse-ssh/</url>
+    <content><![CDATA[<p>一直以來連線回社辦的電腦都要走 webtty 再開 tmate<br>但是今天發現了一個新的方法可以透過反向的 ssh 連回社辦</p>
+<h2 id="reverse-ssh"><a href="#reverse-ssh" class="headerlink" title="reverse ssh"></a>reverse ssh</h2><p>在社辦電腦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh -NfR 2222:localhost:22 simba@simba-vps</span><br></pre></td></tr></table></figure>
+<p>這可以建立一個連線<br>這時候到 simba-vps</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh server@localhost -p 2222</span><br></pre></td></tr></table></figure>
+<p>就可以連線回社辦伺服器了</p>
+<h2 id="autossh"><a href="#autossh" class="headerlink" title="autossh"></a>autossh</h2><p>但是這樣做 ssh 連線有可能會超時然後斷掉<br>這時候可以透過 autossh 來幫我們自動建立連線<br>在社辦電腦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ apt install autossh</span><br><span class="line">$ autossh -Mf 2222 -NR  1111:localhost:22 simba@simba-vps -p 22</span><br></pre></td></tr></table></figure>
+<p>這樣就可以在 vps 上</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh server@localhost -p 1111</span><br></pre></td></tr></table></figure>
+<p>來連回社辦啦！<br>最後可以把這堆在 vps 上再做一次就可以在 internet 連回社辦伺服器了</p>
+<h2 id="參考網址"><a href="#參考網址" class="headerlink" title="參考網址"></a>參考網址</h2><p><a href="https://stackoverflow.com/questions/15983795/how-do-i-establish-a-bidirectional-ssh-tunnel">https://stackoverflow.com/questions/15983795/how-do-i-establish-a-bidirectional-ssh-tunnel</a><br><a href="https://ez3c.tw/2043">https://ez3c.tw/2043</a><br><a href="https://www.ubuntu-tw.org/modules/newbb/viewtopic.php?viewmode=compact&amp;topic_id=17538&amp;forum=7">https://www.ubuntu-tw.org/modules/newbb/viewtopic.php?viewmode=compact&amp;topic_id=17538&amp;forum=7</a><br><a href="http://blog.adahsu.net/2007/11/ssh-reverse-tunnel.html">http://blog.adahsu.net/2007/11/ssh-reverse-tunnel.html</a><br><a href="https://codertw.com/%E4%BC%BA%E6%9C%8D%E5%99%A8/377688/">https://codertw.com/%E4%BC%BA%E6%9C%8D%E5%99%A8/377688/</a><br>這篇講 ssh tunnel 最清楚<br><a href="https://yu-jack.github.io/2019/01/08/ssh-tunnel/">https://yu-jack.github.io/2019/01/08/ssh-tunnel/</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ssh-tunnel</title>
+    <url>/linux/ssh-tunnel/</url>
+    <content><![CDATA[<p>昨天架好了 reverse ssh 讓我可以連回學校 server<br>今天來研究 ssh tunnel</p>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>ssh tunnel 分正反向<br>其實他們的差別只有在方向不一樣<br>連語法參數都一樣</p>
+<h2 id="正向-tunnel"><a href="#正向-tunnel" class="headerlink" title="正向 tunnel"></a>正向 tunnel</h2><p>正向的 tunnel 參數是 -L<br>語法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -L [bind_address:]port:host:hostport</span><br><span class="line">ssh -L [bind_address:]port:remote_socket</span><br><span class="line">ssh -L local_socket:host:hostport</span><br><span class="line">ssh -L local_socket:remote_socket</span><br></pre></td></tr></table></figure>
+
+<h2 id="反向-tunnel"><a href="#反向-tunnel" class="headerlink" title="反向 tunnel"></a>反向 tunnel</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -R [bind_address:]port:host:hostport</span><br><span class="line">ssh -R [bind_address:]port:local_socket</span><br><span class="line">ssh -R remote_socket:host:hostport</span><br><span class="line">ssh -R remote_socket:local_socket</span><br><span class="line">ssh -R [bind_address:]port</span><br></pre></td></tr></table></figure>
+
+<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>看起來好像很難<br>但是其實用下面這個就夠了<br>正向：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -L &lt;local port&gt;:localhost:&lt;remote port&gt; &lt;user&gt;@&lt;remote&gt;</span><br></pre></td></tr></table></figure>
+<p>反向;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -R &lt;remote port&gt;:localhost:&lt;local port&gt; &lt;user&gt;@&lt;remote&gt;</span><br></pre></td></tr></table></figure>
+<p>總而言之就是前面的和選項一樣<br>如果是 -L 那前面就是 local port<br>如果是 -R 那前面就是 remote port</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>youtube-dl</title>
+    <url>/linux/youtube-dl/</url>
+    <content><![CDATA[<p>最近在下載 youtube 音樂，每次下載都要把檔案重新改名，很麻煩。所以就想要寫一個 shell script 來幫我解決。<br>首先改名字我相信 youtube-dl 一定有提供這個選項，於是開始查文件。<br>看到 <code>-o</code> ，接下來講遇到的坑</p>
+<h2 id="o-坑"><a href="#o-坑" class="headerlink" title="-o 坑"></a><code>-o</code> 坑</h2><p><code>-o</code> 後面接的是一個 template string ，不是檔名，而且就算指定副檔名是 .mp3 了還是要寫成 <code>%(ext)s</code></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>bash</tag>
+        <tag>youtube-dl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mongoose Model</title>
+    <url>/nodejs/Mongoose-Model/</url>
+    <content><![CDATA[<h1 id="Mongoose-Model"><a href="#Mongoose-Model" class="headerlink" title="Mongoose Model"></a>Mongoose Model</h1><h2 id="環境設定"><a href="#環境設定" class="headerlink" title="環境設定"></a>環境設定</h2><p>這是這次實驗用的 code</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line">mongoose.connect(<span class="string">&#x27;mongodb://127.0.0.1:27017&#x27;</span>, &#123;<span class="attr">useNewUrlParser</span>: <span class="literal">true</span>, <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">	.then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;Connected to DB&#x27;</span>))</span><br><span class="line">	.catch(<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.error(e));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requiredString = &#123;</span><br><span class="line">	<span class="attr">type</span>: <span class="built_in">String</span>,</span><br><span class="line">	<span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> UserSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">	<span class="attr">username</span>: requiredString,</span><br><span class="line">	<span class="attr">password</span>: requiredString</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> UserModel = mongoose.model(<span class="string">&#x27;User&#x27;</span>, UserSchema);</span><br></pre></td></tr></table></figure>
+<p>mongo db 用 docker 開一個實驗用的 server</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3&#x27;</span><br><span class="line">services: </span><br><span class="line">    db:</span><br><span class="line">        image: &#x27;mongo&#x27;</span><br><span class="line">        container_name: &#x27;aurl-mongodb&#x27;</span><br><span class="line">        volumes:</span><br><span class="line">            - ./data/mongo:/data/db</span><br><span class="line">            - ./data/dump:/dump</span><br><span class="line">        ports:</span><br><span class="line">            - &#x27;27017:27017&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="取得原-schema"><a href="#取得原-schema" class="headerlink" title="取得原 schema"></a>取得原 schema</h2><p>在一般操作的時候都是用 <code>UserModel</code> 在操作資料庫，當要取得 schema 的時候當然也是從他裡面找最方便，當然也可以把 schema 特別弄出來，但是有點麻煩，以這次的例子說明，原本的 <code>UserSchema</code> 會存在 <code>UserModel.schema.obj</code> 裡。</p>
+<h2 id="真實資料庫結構"><a href="#真實資料庫結構" class="headerlink" title="真實資料庫結構"></a>真實資料庫結構</h2><p>在建立 model 後 mongoose 會自動新增一些欄位，例如說 <code>_id</code> 之類的，要取得包含這些欄位的真實 model 結構的話可以在 <code>UserModel.schema.tree</code> 找到</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>mongoose</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>express 重複 send</title>
+    <url>/nodejs/express-%E9%87%8D%E8%A4%87-send/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>在 express route 裡面，我通常會在 <code>res.send()</code> 之類的函式前面都會加一個 <code>return</code> 防止因為程式邏輯漏洞造成重複送出然後噴 error。像是這樣  </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">route.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> res.send(<span class="string">&#x27;Hello world&#x27;</span>);    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果我們用到 <code>Promise</code> 的時候 <code>return</code> 並不會跳出整個 route，所以我們需要另一個方法，我的想法是一個變數儲存是否送出，然後在每次送出前都判斷，送出候更改變數值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------------------+</span><br><span class="line">| is sent( flag === false) |</span><br><span class="line">+-+------------------------+</span><br><span class="line">  |no   </span><br><span class="line">  |     </span><br><span class="line">+-+----+</span><br><span class="line">| send |</span><br><span class="line">+-+----+</span><br><span class="line">  |</span><br><span class="line">+-+-----------+</span><br><span class="line">| change flag |</span><br><span class="line">+-------------+</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">route.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line">  doSomePromise()</span><br><span class="line">    .then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// do something</span></span><br><span class="line">      <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">        res.send(<span class="string">&#x27;Hello world&#x27;</span>);</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這樣就不會噴一堆 error 啦！</p>
+<h1 id="改進版"><a href="#改進版" class="headerlink" title="改進版"></a>改進版</h1><p>用了之後發現這樣有點麻煩，express 應該有內建變數儲存是否已送出才對，如果沒有，我應該也有更好的方法可以直接從 <code>req</code> 或 <code>res</code> 的狀態判斷是否已送出。找了一下，真的被我找到了 <a href="https://expressjs.com/en/4x/api.html#res.headersSent">res.headersSent</a> 這個內建變數，他的行為就和上面的 <code>flag</code> 一模一樣，但是我們不用自己去維護他的狀態。所以上面的範例就可以改寫成這樣  </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">route.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  doSomePromise()</span><br><span class="line">    .then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// do something</span></span><br><span class="line">      res.headersSent || res.send(<span class="string">&#x27;Hello world&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>express</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hCaptcha</title>
+    <url>/nodejs/hCaptcha/</url>
+    <content><![CDATA[<h1 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h1><p>我們社團的短網址服務裡面常常出現一些奇怪的網址，我猜可能是有機器人在刷，所以我想加入 captcha 減少這類問題。我選擇的是 <a href="https://hcaptcha.com/">hCaptcha</a> 這套，能不依賴 Google 就盡量不要。</p>
+<h1 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h1><h2 id="申請帳號"><a href="#申請帳號" class="headerlink" title="申請帳號"></a>申請帳號</h2><p>先到 <a href="https://hcaptcha.com/">hCaptcha</a> 註冊、新增一個網站，複製 sitekey (<code>Sites</code> &gt; <code>site setting</code>) 和 secret key (<code>Settings</code>)，我們等等會用到</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ol>
+<li><p>首先引入 script ，在 <code>&lt;head&gt;</code> 加入</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://hcaptcha.com/1/api.js&quot;</span> <span class="attr">async</span> <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接著在你的 <code>&lt;form&gt;</code> 裡面加入，這邊的 <code>your_site_key</code> 就是剛剛複製的那個。記得 <code>&lt;form&gt;</code> 的 method 要設成 <code>post</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;h-captcha&quot;</span> <span class="attr">data-sitekey</span>=<span class="string">&quot;your_site_key&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="後端（node-express）"><a href="#後端（node-express）" class="headerlink" title="後端（node express）"></a>後端（node express）</h2><ol>
+<li><p>SECRET<br>首先，你要把剛剛的 <code>SECRET</code> 給 server 知道，我用的是 dotenv，當然其他的套件也是可以。<br>簡而言之，剛剛複製下來的 <code>SECRET</code> 就是用在這裡。</p>
+</li>
+<li><p>驗證<br>後端我選用的套件是 <a href="https://github.com/vastus/express-hcaptcha">express-hcaptcha</a> ，它提供一個 middleware 驗證 hcaptcha 的 token。<br>按照 README.md 的說明，應該是像這樣就可以了，當驗證通過時就會執行第二個 middleware</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>).Router();</span><br><span class="line"><span class="keyword">const</span> captcha = <span class="built_in">require</span>(<span class="string">&#x27;express-hcaptcha&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SECRET = process.env.HCAPTCHA_SECRET_KEY;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(SECRET)&#123;</span><br><span class="line">  <span class="comment">// 這個 route 就是本來接收/處理 form 傳遞資料進來來的 route，只是加一個 captcha.middleware.validate(SECRET)</span></span><br><span class="line">  router.post(<span class="string">&#x27;/&#x27;</span>, captcha.middleware.validate(SECRET), <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&#x27;verified!&#x27;</span>,</span><br><span class="line">      <span class="attr">hcaptcha</span>: req.hcaptcha</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>很不幸的，你會發現不管怎麼試，都驗證都不會通過，因為有一個 README.md 沒寫的 bug  </p>
+</blockquote>
+<ol start="3">
+<li>解 bug<br>閱讀 <a href="https://github.com/vastus/express-hcaptcha">express-hcaptcha</a> 的 source code，你會在 <a href="https://github.com/vastus/express-hcaptcha/blob/694265a005cbb15306c9d65623c6a365be79b8fc/index.js#L9">這行</a> 發現它用的是 <code>req.body.token</code> ，但是 hCaptcha 的回傳是在 <code>req.body.h-captcha-token</code> 裡面 ……<br>有夠蠢的 bug<br>所以剛剛的程式碼就需要修改一下<br>在驗證之前先把 <code>req.body.h-captcha-token</code> 的內容塞進 <code>req.body.token</code> 裡面<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>).Router();</span><br><span class="line"><span class="keyword">const</span> captcha = <span class="built_in">require</span>(<span class="string">&#x27;express-hcaptcha&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SECRET = process.env.HCAPTCHA_SECRET_KEY;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(SECRET)&#123;</span><br><span class="line">  router.post(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    req.body.token = req.body[<span class="string">&#x27;h-captcha-response&#x27;</span>];</span><br><span class="line">    next();</span><br><span class="line">  &#125;, captcha.middleware.validate(SECRET), <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&#x27;verified!&#x27;</span>,</span><br><span class="line">      <span class="attr">hcaptcha</span>: req.hcaptcha</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1>看原始碼很重要</li>
+</ol>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>express</tag>
+        <tag>captcha</tag>
+        <tag>hCaptcha</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node require from project root</title>
+    <url>/nodejs/node-require-from-project-root/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>在寫一個專案的時候，有時候會有一些小程式重複在不同的檔案裡用到，這時候我們會把他打包成模組放在 <code>lib/</code>。但是如果資料夾結構有點點複雜的時候， <code>require()</code> 的路徑就會很複雜：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── index.js</span><br><span class="line">├── lib</span><br><span class="line">│   └── random.js</span><br><span class="line">└── routes</span><br><span class="line">    └── page</span><br><span class="line">        └── signup</span><br><span class="line">            └── index.js</span><br></pre></td></tr></table></figure>
+<p>在 <code>index.js</code> 裡面如果要引入 <code>random.js</code> 就會變成這樣</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> random = <span class="built_in">require</span>(<span class="string">&#x27;../../lib/random.js&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="爛解法"><a href="#爛解法" class="headerlink" title="爛解法"></a>爛解法</h1><p>如果我們想要直接用 <code>require(&#39;lib/random&#39;)</code> 的話做簡單的方式是上傳 npm，但是這樣稍嫌麻煩，而且別的專案不一定用的到。每一次修改都要上傳 npm 很不方便。</p>
+<h1 id="好解法"><a href="#好解法" class="headerlink" title="好解法"></a>好解法</h1><p>在 linux 裡面要把執行檔做成指令有兩個方法</p>
+<ol>
+<li>放到 <code>/usr/bin</code> 之類的地方</li>
+<li>把這個路徑直接加到 <code>PATH</code> 裡面</li>
+</ol>
+<p>在 node 裡面也有 path 設定，<code>module.paths</code>，在 require 時會去這個裡面的目路尋找檔案。所以如果要達成上述的功能的話就只要加這行就可以了</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.paths.push(process.cwd());</span><br></pre></td></tr></table></figure>
+<p>這樣就可以直接用 <code>require(&#39;lib/random&#39;)</code> 引入了</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://github.com/nodejs/node/issues/4223">https://github.com/nodejs/node/issues/4223</a><br><a href="https://github.com/nodejs/node/issues/1979">https://github.com/nodejs/node/issues/1979</a><br><a href="https://www.npmjs.com/package/rooty">https://www.npmjs.com/package/rooty</a><br>^^^<br>這個是在 github issue 裡面看到的，沒試過，但是應該也可以用吧？只是我覺得沒有 <code>paths</code> 的解法來的優雅。  </p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node-vm</title>
+    <url>/nodejs/node-vm/</url>
+    <content><![CDATA[<h1 id="node-js-VM-模組"><a href="#node-js-VM-模組" class="headerlink" title="node.js VM 模組"></a>node.js VM 模組</h1><p>VM 是 node.js 的核心模組，提供安全的環境 (沙箱) 來測試不信任的程式碼。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在 VM 模組裡面，有兩個基本的物件，script 和 context。script 是經過「編譯」程式，context 是給在沙箱裡面的程式碼的全域物件 (global) 。沙箱中的程式只能存取透過 context 指定的物件。</p>
+<h3 id="建立-script"><a href="#建立-script" class="headerlink" title="建立 script"></a>建立 script</h3><p>VM 模組提供 <code>Script</code> 建構子，可以透過他來建立 <code>Script</code> 物件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> script = <span class="keyword">new</span> vm.Script(<span class="string">&#x27;i++&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>也可以用 <code>vm.createScript</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> script = vm.createScript(<span class="string">&#x27;i++&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://nodejs.org/dist/latest-v14.x/docs/api/vm.html#vm_class_vm_script">vm.Script</a><br>vm.createScript 在 nodejs docs 上我沒有找到，但是我在自己的電腦上 (node v14.15.0) 測試是可以用的  </p>
+</blockquote>
+<h3 id="建立-context"><a href="#建立-context" class="headerlink" title="建立 context"></a>建立 context</h3><p>vm 模組沒有提供建立 context 的建構子，我們只能透過 <code>vm.createContext</code> 來建立 context。<br>注意 <code>vm.createContext</code> 不是 pure function，除了會回傳 context 以外，還會把傳入的物件變成 context，兩者傳入 <code>vm.isContext</code> 都會回傳 <code>true</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> context1 = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> context2 = vm.createContext(context1);</span><br><span class="line"></span><br><span class="line">vm.isContext(context1); <span class="comment">// true</span></span><br><span class="line">vm.isContext(context2); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，其實 context1 和 context2 指向同一個物件。</span></span><br><span class="line">context1 === context2 <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://nodejs.org/dist/latest-v14.x/docs/api/vm.html#vm_vm_createcontext_contextobject_options">vm.createContext</a><br><a href="https://nodejs.org/dist/latest-v14.x/docs/api/vm.html#vm_vm_iscontext_object">vm.isContext</a>  </p>
+</blockquote>
+<h2 id="執行-script-預先編譯-Script"><a href="#執行-script-預先編譯-Script" class="headerlink" title="執行 script (預先編譯 Script)"></a>執行 script (預先編譯 Script)</h2><p>最基本的函式是 <code>script.runInContext</code>，它會把傳入的 context 當作 vm 的全域執行裡面的程式，<em>script 的最後一個表達式的回傳值會被當作這次執行的回傳值</em>。<br>下面的範例，會把 context 中的 <code>i</code> 複製一遍後回傳他的值和長度。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> script = vm.createScript(<span class="string">&#x27;i += i; [i, i.length]&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> context = vm.createContext(&#123;<span class="attr">i</span>: <span class="string">&#x27;node&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line">script.runInContext(context); <span class="comment">// [ &#x27;nodenode&#x27;, 8 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果沒有事先準備 context，可以用 <code>script.runInNewContext</code>，直接把還沒 <a href="https://nodejs.org/dist/latest-v14.x/docs/api/vm.html#vm_what_does_it_mean_to_contextify_an_object">contextify</a> 物件傳進來，這個函式會<br>自動建立 context。這個參數是可略的，如果沒傳物件進進來的話，context 就會是空物件。</p>
+<p>如果想要讓 script 直接存取全域物件的話，可以用 <code>script.runInThisContext</code>。這個函式不接受 context，因為 context 就是全域 (this) 了。</p>
+<table>
+<thead>
+<tr>
+<th align="left">method</th>
+<th align="left">context</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">runInContext</td>
+<td align="left">contextified object</td>
+</tr>
+<tr>
+<td align="left">runInNewContext</td>
+<td align="left">any Object</td>
+</tr>
+<tr>
+<td align="left">runInThisContext</td>
+<td align="left">不用傳，this</td>
+</tr>
+</tbody></table>
+<h2 id="執行-script-沒有預先編譯-Script"><a href="#執行-script-沒有預先編譯-Script" class="headerlink" title="執行 script  (沒有預先編譯 Script)"></a>執行 script  (沒有預先編譯 Script)</h2><p>如果你很懶，或是你只是想要一次行的執行這段 code，可以用 <code>vm.runInContext</code>、<code>vm.runInNewContext</code> 和 <code>vm.runInThisContext</code>。用法跟先編譯過再執行一樣，只是其中第一個參數變成還沒編譯過的 code (String)。</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>nodejs</tag>
+        <tag>vm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>remind-daniel</title>
+    <url>/nodejs/remind-daniel/</url>
+    <content><![CDATA[<p>今天終於把登入做完了<br>我覺得最重要的是找好的教學文章、去看沒有人看得懂的程式碼</p>
+<hr>
+<h1 id="passport-js"><a href="#passport-js" class="headerlink" title="passport.js"></a>passport.js</h1><ol>
+<li>建立 strategy</li>
+<li>弄 session</li>
+<li>弄 auth 函式<br>沒了！</li>
+</ol>
+<p>參考的教學文：<a href="https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E9%80%8F%E9%81%8E-passport-js-%E5%AF%A6%E4%BD%9C%E9%A9%97%E8%AD%89%E6%A9%9F%E5%88%B6-11cf478f421e">https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E9%80%8F%E9%81%8E-passport-js-%E5%AF%A6%E4%BD%9C%E9%A9%97%E8%AD%89%E6%A9%9F%E5%88%B6-11cf478f421e</a><br>雖然這個也沒有好到哪裡去但至少我看著他做出來了，有些部份是參考作者的餐廳程式</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>express</tag>
+        <tag>passport.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlite</title>
+    <url>/nodejs/sqlite/</url>
+    <content><![CDATA[<p>昨天是試著去理解 sqlite3，我發現他的 callback function 真的太煩了<br>於是我試著去尋找 async 的版本，還真找到了<br>這個套件把整個 sqlite 包成 async 了</p>
+<hr>
+<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm i sqlite-async</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="some-sample-code"><a href="#some-sample-code" class="headerlink" title="some sample code"></a>some sample code</h1><p>這裡是以短網址部份為範例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 因為這個需要 await 所以要放在 async 函數裡</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> sqlite = <span class="built_in">require</span>(<span class="string">&#x27;sqlite-async&#x27;</span>);</span><br><span class="line">	<span class="comment">// 這裡因為開 DB 會延遲，所以要 await 一下，不然等等會 undefined</span></span><br><span class="line">	<span class="keyword">const</span> Url = <span class="keyword">await</span> sqlite.open(<span class="string">&#x27;Url.db&#x27;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 這裡不能加 await 不然出錯</span></span><br><span class="line">    Url.run(<span class="string">`CREATE TABLE IF NOT EXISTS Url (</span></span><br><span class="line"><span class="string">        url STRING,</span></span><br><span class="line"><span class="string">        code STRING</span></span><br><span class="line"><span class="string">    )`</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 這裡也要加 await 因為這也是 async</span></span><br><span class="line">    <span class="keyword">const</span> stat = <span class="keyword">await</span> Url.prepare(<span class="string">`INSERT INTO Url VALUES (?, ?)`</span>);</span><br><span class="line">    stat.run(<span class="string">&#x27;https://google.com&#x27;</span>, <span class="string">&#x27;goo&#x27;</span>);</span><br><span class="line">    stat.run(<span class="string">&#x27;https://youtube.com&#x27;</span>, <span class="string">&#x27;yt&#x27;</span>);</span><br><span class="line">    stat.run(<span class="string">&#x27;https://gmail.com&#x27;</span>, <span class="string">&#x27;gmail&#x27;</span>);</span><br><span class="line">    stat.run(<span class="string">&#x27;https://ckcsc,net&#x27;</span>, <span class="string">&#x27;ckcsc&#x27;</span>);</span><br><span class="line">	<span class="comment">// 這行和上面四行選一個加 await 否則會有些家不進去</span></span><br><span class="line">    <span class="keyword">await</span> stat.finalize();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 這裡用 then 也可以用 await，then 會回傳一個包含回傳值的陣列</span></span><br><span class="line">    Url.all(<span class="string">&quot;SELECT * FROM Url&quot;</span>)</span><br><span class="line">        .then(<span class="built_in">console</span>.log)</span><br><span class="line">        .catch(<span class="built_in">console</span>.error);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>sqlite</tag>
+        <tag>async</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>strapi-quick-start</title>
+    <url>/nodejs/strapi-quick-start/</url>
+    <content><![CDATA[<p>strapi 是一個 headless CMS (content management system)，透過 web 介面就可以建立一個 api server</p>
+<h1 id="strapi"><a href="#strapi" class="headerlink" title="strapi"></a>strapi</h1><h2 id="什麼是-headless-CMS"><a href="#什麼是-headless-CMS" class="headerlink" title="什麼是 headless CMS"></a>什麼是 headless CMS</h2><p>headless CMS 顧名思義是「無頭的 內容管理系統」，意思是沒有前端、只有後端，它就是一個 DB 的 web 界面 + api server。headless CMS 專注於處理 api 的部份，前端的部份一律不關心。這對於前後端分離有很大的幫助，基本上 headless CMS 已經解決了後端 80% 的工作，剩下的就是一些客製化的邏輯，像是登入、特殊的計算等等。</p>
+<h2 id="strapi-的優點"><a href="#strapi-的優點" class="headerlink" title="strapi 的優點"></a>strapi 的優點</h2><ol>
+<li>他的界面完善</li>
+<li>支援多種 DB  <blockquote>
+<p>MySQL &gt;= 5.6<br>MariaDB &gt;= 10.1<br>PostgreSQL &gt;= 10<br>SQLite &gt;= 3<br>MongoDB &gt;= 3.6  </p>
+</blockquote>
+</li>
+<li>存取權限控制</li>
+<li>外掛</li>
+</ol>
+<h2 id="quickstart"><a href="#quickstart" class="headerlink" title="quickstart"></a>quickstart</h2><p>以下步驟是補充 <a href="https://strapi.io/documentation/developer-docs/latest/getting-started/quick-start.html">官網的 quick start</a></p>
+<ol>
+<li>安裝<br><code>$ npx create-strapi-app my-project --quickstart; cd my-project</code><br>這是候應該會爆出一個關於 <code>knex</code> 的 dependency 的錯誤，先暫時跳過不理它  </li>
+<li>解決 dependency 的錯誤<br>把 <code>package.json</code> 裡面 <code>dependencies</code> 裡面 <code>knex</code> 的版本中 <code>&lt;</code> 拿掉，然後下 <code>npm update</code> 再 <code>npm start</code> 就可以了</li>
+<li>build<br>這時候如果你按照官網的教學 <code>npm start</code> 一定會出錯，你要先 <code>npm run build</code> 然後它才不會一直說找不到檔案</li>
+<li>建立第一個 user<br>接著它應該會自動幫你開啟一個頁面，如果沒有的話可以按<a href="http://localhost:1337/admin">這個連結</a>。再來我們要建立使用者，他的密碼要求特別機掰，一定要英數大小寫混合才給過，太短也不行。</li>
+<li>建立 <code>collection type</code><br>如果你按照官網的說法，這裡又會讓你很困惑，<code>+ Create new collection type</code> 按鈕到底它ㄇ的在哪？其實只要在開啟伺服器時用 develop mode 開就可以了，這個重要要的東西它又沒寫了，把你的 server 關掉，下 <code>npm run develop</code> 然後再去剛剛的頁面，重新整理就可以看到那個調皮的按鈕了。</li>
+</ol>
+<p>再來的內容基本上沒有太多錯誤，希望官方趕快更新文件吧，這個真的害人不淺阿。</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>nodejs</tag>
+        <tag>headless api</tag>
+        <tag>api</tag>
+        <tag>strapi</tag>
+        <tag>database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>unix-socket</title>
+    <url>/nodejs/unix-socket/</url>
+    <content><![CDATA[<p>今天心血來潮在看 unix socket<br>突然想到 node 可不可以把 服務監聽在一個 socket file<br>這樣在設定的時候就不用記哪個服務是幾 port</p>
+<h1 id="node-部份"><a href="#node-部份" class="headerlink" title="node 部份"></a>node 部份</h1><h2 id="監聽在-unix-socket"><a href="#監聽在-unix-socket" class="headerlink" title="監聽在 unix socket"></a>監聽在 unix socket</h2><p>查完資料後發現其實只要把原本填 port 的地方改成 socket file 的路徑就好了<br>像這樣</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World\n&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="string">&#x27;/tmp/express.sock&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="刪除-socket-file"><a href="#刪除-socket-file" class="headerlink" title="刪除 socket file"></a>刪除 socket file</h2><p>因為每次的 listen 都會新增一個 socket file<br>相當於佔用一個 port<br>如果不刪除的話就相當於 port 被佔用了<br>會噴錯<br>所以每次程式結束的時候要把這個 socket file 刪掉<br>然後在 <code>/tmp</code> 下的檔案會在開機後自動刪掉<br>所以如果部屬後發什麼問題重開機就對了！<br>修改完的 code 長這樣</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="string">&#x27;Hello World\n&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="string">&#x27;/tmp/express.sock&#x27;</span>, <span class="built_in">console</span>.log);</span><br><span class="line">process.on(<span class="string">&#x27;SIGINT&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  fs.unlinkSync(<span class="string">&#x27;/tmp/express.sock&#x27;</span>);</span><br><span class="line">  process.exit(<span class="number">0</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><p>弄完了伺服器<br>要怎麼測試呢？<br>這時候可以用 <code>curl</code> 來測試</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ curl --unix-socket /tmp/express.sock http://localhost</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx-reverse-proxy"><a href="#nginx-reverse-proxy" class="headerlink" title="nginx reverse proxy"></a>nginx reverse proxy</h1><p>現在我們把伺服器開好了<br>但是 unix socket 只能在本機瀏覽啊！<br>所以我們要透過 nginx 來幫忙做 reverse proxy<br>先新增一個 <code>/etc/nginx/sites-available/test.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name t.localhost;</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass http://unix:/tmp/express.sock:/;</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然後在 <code>/etc/hosts</code> 新增一條</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1	t.localhost</span><br></pre></td></tr></table></figure>
+<p>最後就可以打開瀏覽器 <a href="http://t.localhost">http://t.localhost</a><br>應該會出現 502 Getway Error<br>為什麼呢？<br>因為 socket file 的權限設定<br>其他使用者 (nginx) 無法開啟<br>所以要</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ chmod 777 /tmp/express.sock</span><br></pre></td></tr></table></figure>
+<p>這樣就可以啦！</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>unix socket</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bash completion</title>
+    <url>/linux/bash/bash-completion/</url>
+    <content><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>今天寫了一個 bash script 幫我管理 mongodb docker，在使用的時候一些子命令，像是 <code>up</code>、<code>down</code>、<code>clean</code>。我希望可以讓 bash 當我自動補齊這些選項。</p>
+<h1 id="bash-completion"><a href="#bash-completion" class="headerlink" title="bash_completion"></a><code>bash_completion</code></h1><p><code>bash_completion</code> 是一個可以幫我們做程式化補齊的工具，像是 git 就有使用到這個工具，在 commit、push 的時候按 tab 都會顯示出當下我們可以用的東西，像是 <code>git push&lt;tab&gt;&lt;tab&gt;</code> 就會自動補齊 <code>origin</code> 而不是給我們看檔案（bash 預設只會補齊檔案和命令）。我們這次只須要用基本的 <code>complete</code> 就可以了</p>
+<h1 id="complete"><a href="#complete" class="headerlink" title="complete"></a><code>complete</code></h1><p><code>complete</code> 可以幫命令加上簡單的自動完成，其實 <code>bash_completion</code> 也是去呼叫這個命令來達成自動補齊。<code>complete</code> 傻用非常簡單，像下面這樣就可以幫 <code>mongodb</code> 這個命令加上自動補齊</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">complete -W <span class="string">&quot;up down clean&quot;</span> mongodb</span><br></pre></td></tr></table></figure>
+
+<p><code>-W</code> 選項代表後面是字詞列表，用 <code>-F</code> 後面可以接一個函數，但是這個我沒研究，也許下一個專案就是研究 <code>complete</code> 也說不定。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>bash</category>
+      </categories>
+      <tags>
+        <tag>bash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>college-exam-interview-and-written-test</title>
+    <url>/other/college-exam-interview-and-written-test/</url>
+    <content><![CDATA[<h1 id="師大科技系面試"><a href="#師大科技系面試" class="headerlink" title="師大科技系面試"></a>師大科技系面試</h1><blockquote>
+<p>兩關各十分鐘</p>
+</blockquote>
+<h2 id="第一關："><a href="#第一關：" class="headerlink" title="第一關："></a>第一關：</h2><ol>
+<li>自我介紹</li>
+<li>一分鐘補充說明（有利備審、競賽）解決問題的經驗</li>
+<li>自由談話時間</li>
+</ol>
+<h2 id="第二關："><a href="#第二關：" class="headerlink" title="第二關："></a>第二關：</h2><ol>
+<li>自我介紹一分鐘</li>
+<li>科技系分幾組？差別在哪？你會選哪組？</li>
+<li>我看你的自傳有寫「專案開發」，有例子嗎？</li>
+<li>如果團隊合作時有人擺爛，你會怎麼做？（20秒）</li>
+</ol>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>這個系是團體面試，三個教授對三個考生，輪流回答問題，因為我是那組第一個，所以幾乎都是我先回答，教授沒有問什麼很難得問題，另外系主任看起來人很好。</p>
+<hr>
+<h1 id="成大物理筆試"><a href="#成大物理筆試" class="headerlink" title="成大物理筆試"></a>成大物理筆試</h1><blockquote>
+<p>數學、物理各一小時</p>
+</blockquote>
+<h2 id="數學"><a href="#數學" class="headerlink" title="數學"></a>數學</h2><ol>
+<li>立方體 點數 - 邊數 + 面數</li>
+<li>很簡單的機率</li>
+<li>一堆零的四階行列式</li>
+<li>不難的橢圓</li>
+<li>看似很難但是只要代數字就有答案的複數平面</li>
+<li>需要爆很久的數學歸納法（麻煩但簡單）<br>還有幾題忘了</li>
+</ol>
+<h2 id="物理"><a href="#物理" class="headerlink" title="物理"></a>物理</h2><p>全部都是代數字就有答案，只需要學到動量就會了，都問定性分析，沒有算多少。可能比課本例題還水。其中有一題有點怪，問體重，但是單位給 「kg」（不是地球），不太確定到底是要問重量還是質量。這次的題目根本水題，不像給高三學測至少 14 級的人寫的，我覺得他比較像簽到表，沒來刷掉，有來的話也沒有為難考生，就只是簽到而已。另外他說要帶證件，可是也沒看，只有簽名而已，我很懷疑口罩都沒拿下來他怎麼知道我是本人。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>college</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bash number loop</title>
+    <url>/linux/bash/bash-number-loop/</url>
+    <content><![CDATA[<p>今天在某的地方剛好看到一個 bash 的小技巧，當我們要從 1 數到 100 時，通常會用 <code>seq</code> 指令來做，但是如果我們的需求剛剛好是每次遞增（遞減）1 的話，就可以使用 <code>&#123;start..end&#125;</code> 縮寫，下面兩個範例的效果是一樣的：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for 迴圈 + seq 的寫法</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 1 1 100); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用 &#123;start..end&#125;</span></span><br><span class="line"><span class="built_in">echo</span> &#123;1..100&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個技巧也可以用在建立檔案，像這樣：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch user&#123;1..100&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>bash</category>
+      </categories>
+      <tags>
+        <tag>bash</tag>
+        <tag>loop</tag>
+        <tag>seq</tag>
+        <tag>tips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>connect to ethernet in docker container</title>
+    <url>/linux/docker/connect-to-ethernet-in-docker-container/</url>
+    <content><![CDATA[<h1 id="如何在-docker-container-裡連接-ethernet"><a href="#如何在-docker-container-裡連接-ethernet" class="headerlink" title="如何在 docker container 裡連接 ethernet"></a>如何在 docker container 裡連接 ethernet</h1><p>今天突然有個需求是在一個已經開啟的 container 弄東西，需要網路，但是不知道為什麼一直不上，後來發現是 docker 沒有設定 DNS 的問題，只要在外面輸入兩行指令就可以了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">DOCKER_OPTS=<span class="string">&quot;--dns 8.8.8.8&quot;</span></span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>然後重新啟動 docker</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker commit</title>
+    <url>/linux/docker/docker-commit/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次提到可以用 Dockerfile 建立 docker image，但我們還有令一個方法可以建立 docker image，那就是 <code>docker commit</code> 指令</p>
+<h2 id="和-Dockerfile-差別"><a href="#和-Dockerfile-差別" class="headerlink" title="和 Dockerfile 差別"></a>和 Dockerfile 差別</h2><p><code>docker commit</code> 有點像是手動版的 Dockerfile，在用 Dockerfile 建構 docker image 的時候，docker build 的工作就像是自動根據 Dockerfile 操作 <code>docker commit</code>。<br>Dockerfile 比較適合用在自動化交付和部屬，例如說你有一份程式碼，要將他包成 Docker 就很適合用 Dockerfile 自動化操作，因為程式碼會改變，但是包裝的流程基本上都是一樣的。<br><code>docker commit</code> 適合用在建構環境，因為會有比較麻煩的操作，如果寫成 Dockerfile 會比較麻煩，當然如果可以的話還是寫成 Dockerfile 會比較好，因為更新的時候會比較方便。<br>在建構 image 的時候要用哪個方法就看個人取捨了。</p>
+<h2 id="docker-commit-指令"><a href="#docker-commit-指令" class="headerlink" title="docker commit 指令"></a><code>docker commit</code> 指令</h2><p><code>docker commit</code> 可以把運行中的 comtainer 轉成 images，有點類似令存新檔的概念。先來看看參數吧！</p>
+<h3 id="參數"><a href="#參數" class="headerlink" title="參數"></a>參數</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker commit --<span class="built_in">help</span></span><br><span class="line">Usage:	docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line">Create a new image from a container<span class="string">&#x27;s changes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">  -a, --author string    Author (e.g., &quot;John Hannibal Smith &lt;hannibal@a-team.com&gt;&quot;)</span></span><br><span class="line"><span class="string">  -c, --change list      Apply Dockerfile instruction to the created image</span></span><br><span class="line"><span class="string">  -m, --message string   Commit message</span></span><br><span class="line"><span class="string">  -p, --pause            Pause container during commit (default true)</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">選項</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a</td>
+<td align="left">作者的名字</td>
+</tr>
+<tr>
+<td align="left">-c</td>
+<td align="left">我還沒研究出來有什麼用</td>
+</tr>
+<tr>
+<td align="left">-m</td>
+<td align="left">訊息</td>
+</tr>
+<tr>
+<td align="left">-p</td>
+<td align="left">建構時停容器</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker login error</title>
+    <url>/linux/docker/docker-login-error/</url>
+    <content><![CDATA[<h1 id="錯誤說明"><a href="#錯誤說明" class="headerlink" title="錯誤說明"></a>錯誤說明</h1><p>昨天我在 terminal 登入 docker 的時候發現不知道為什麼不能登入，我先透過網頁登入確認過密碼沒有問題，也不是打錯字的關係，但還是不能當入。總是會有類似以下的錯誤訊息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error saving credentials: error storing credentials - err: exit status 1, out: `exit status 1: gpg: simbafs: 已跳過: 沒有公鑰</span><br><span class="line">gpg: [stdin]: encryption failed: 沒有公鑰</span><br><span class="line">Password encryption aborted.`</span><br></pre></td></tr></table></figure>
+
+<h1 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h1><p>經過搜尋之後，我按照 <a href="https://github.com/docker/docker-credential-helpers/issues/102#issuecomment-388634452">https://github.com/docker/docker-credential-helpers/issues/102#issuecomment-388634452</a> 的方法成功登入了，但是在這之前要先安裝 <code>gpg</code> 和 <code>pass</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install gnupg2 pass</span><br></pre></td></tr></table></figure>
+
+<p>接下來是我用的指令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install gnupg2</span><br><span class="line">wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-pass-v0.6.3-amd64.tar.gz</span><br><span class="line">tar xvf docker-credential-pass-v0.6.3-amd64.tar.gz </span><br><span class="line">chmod 755 docker-credential-pass</span><br><span class="line">sudo mv docker-credential-pass /usr/bin/</span><br><span class="line">ass insert docker-credential-helpers/docker-pass-initialized-check</span><br><span class="line">pass insert docker-credential-helpers/docker-pass-initialized-check</span><br><span class="line">pass show docker-credential-helpers/docker-pass-initialized-check</span><br><span class="line">docker-credential-pass list</span><br><span class="line">docker login</span><br></pre></td></tr></table></figure>
+
+<h1 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h1><ul>
+<li><a href="https://github.com/docker/docker-credential-helpers/issues/102#issuecomment-388634452">https://github.com/docker/docker-credential-helpers/issues/102#issuecomment-388634452</a>  </li>
+<li><a href="https://stackoverflow.com/questions/50151833/cannot-login-to-docker-account/52881198#52881198">https://stackoverflow.com/questions/50151833/cannot-login-to-docker-account/52881198#52881198</a>  </li>
+<li><a href="https://gist.github.com/dataday/3c267be29e32573829c4781c99ea3395">https://gist.github.com/dataday/3c267be29e32573829c4781c99ea3395</a>  </li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker 基礎指令</title>
+    <url>/linux/docker/docker-%E5%9F%BA%E7%A4%8E%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install docker docker.io docker-compose</span><br></pre></td></tr></table></figure>
+<h1 id="What-is-docker"><a href="#What-is-docker" class="headerlink" title="What is docker"></a>What is docker</h1><p>Docker 是一個容器化的技術，基本上使用的時候可以把他當成虛擬機，雖然他們的使用的技術完全不一樣。對新手來說，在 Docker 裡面有四個重要的名詞：dockerfile, docker image, docker container, docker-compose。  </p>
+<ol>
+<li>dockerfile<br> 純文字檔，定義建立 docker image 的步驟，有點像是一個 bash shell。通常命名成 <code>Dockerfile</code> ，在 build 的時候會預設用這個，也可以用 <code>-f</code> 來指定其他的檔案。</li>
+<li>docker image<br> 這是透過 <code>docker build</code> 編譯出來的東西。可以想成 docker container 的藍圖，在 <code>docker pull</code> 的時候也是下載 docker image 而不是 dockerfile。基本上 image 裡面已經包括了編譯好的執行檔和基本的環境設定，所以在 docker 外面是不用做他設定的，這也是 docker 的魅力所在。</li>
+<li>docker container<br> 每個 docker image 可以產生很多個 container，也就是執行中的程式。在這裡你已經可以用 docker 來建立各種服務了。這裡也可以想像成虛擬機，用 <code>docker exec -it container_name bash</code> 可以進到 container 裡面(如果裡面有 bash 的話)  </li>
+<li>docker-compose<br> 一個服務不是一個 container 就可以架起來的，通常需要好幾個 container。這時候如果透過指令啟動也許會有忘記啟動和設定複雜的問題，所以有了這個工具。他透過 yml 設定來啟動服務。值得注意的是在同一個 <code>docker-compose.yml</code> 啟動的 container 會在同一個網路內而和外面隔開，所以如果是 containers 之間的通訊不用把 port 暴露出來，只有開給外面的要 expose。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ddos</title>
+    <url>/linux/server/ddos/</url>
+    <content><![CDATA[<h1 id="伺服器被-DDoS-惹"><a href="#伺服器被-DDoS-惹" class="headerlink" title="伺服器被 DDoS 惹"></a>伺服器被 DDoS 惹</h1><p>今天早上把社團的 reverse proxy server 換成 nginx<br>下午心血來潮看看 log 檔<br>因為沒有寫好的工具<br>首先把 log 檔 cp 到我的電腦再來處理</p>
+<hr>
+<p>先寫了一個 script 來計算重複的行數</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># count.sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> -A cnt</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> id extre</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">let</span> cnt[<span class="variable">$id</span>]++</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;!cnt[@]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$id</span> <span class="variable">$&#123;cnt[$id]&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>再來用 <code>awk</code> 把 <code>status code</code> 是 404 的 ip 挑出來<br>然後丟給 <code>count.sh</code> 計算每個 ip 有幾個 404<br>最後再存到 <code>404-ip.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;$9 == 404 &#123;print $1&#125;&#x27;</span> access.log | ./count.sh &gt; 404-ip.txt</span><br></pre></td></tr></table></figure>
+<hr>
+<p>再來用 <code>sort</code> 來排序剛剛的 <code>404-ip.txt</code>，存到 <code>404-ip-sorted.txt</code><br><code>sort</code> 加上 <code>-n</code> 選項讓他以數字順數排序，預設是以 ascii 順序排序<br><code>-r</code> 讓他由大到小<br><code>-k2</code> 指定以第二欄排序，預設以空白分開，可以用 <code>-t</code> 改變分隔符號</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sort -n 404-ip.txt -k2 -r &gt; 404-ip-sorted.txt</span><br></pre></td></tr></table></figure>
+<hr>
+<p>這時候來看看 <code>404-ip-sorted.txt</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ head 404-ip-sorted.txt</span><br><span class="line"></span><br><span class="line">91.199.118.175 1329180</span><br><span class="line">91.199.118.212 259477</span><br><span class="line">163.172.12.108 145050</span><br><span class="line">195.154.161.234 142920</span><br><span class="line">195.154.102.22 142450</span><br><span class="line">195.154.102.191 137800</span><br><span class="line">163.172.12.148 132650</span><br><span class="line">62.210.220.48 129248</span><br><span class="line">195.154.102.159 11353</span><br><span class="line">62.210.85.48 11206</span><br></pre></td></tr></table></figure>
+
+<p>哇賽！第一名的 ip 送了一百三十多萬個請求<br>這份 log 檔是在早上十點多才開始紀錄的<br>平均每秒 41 個請求<br>這麼多鐵定是 ddos<br>我們來看看完整的檔案看看有多少人在 DDoS 我們的 server<br>嗯，總共十九個破千的<br>這些通通有問題（其實應該以平均請求數來看，但太複雜了所以以後再補<br>接下來就接把這幾個 ip ban 掉</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo su</span><br><span class="line">$ <span class="built_in">cd</span> /etc/nginx/sites-enabled/</span><br><span class="line">$ vi banned-ip.conf</span><br></pre></td></tr></table></figure>
+<p>將 ip 貼到文件裡面<br>在一般模式下執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[esc] :%s/^/deny /</span><br><span class="line">[esc] :%s/&amp;/;/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ../sites-enabled</span><br><span class="line">$ ln -s ../sites-available</span><br></pre></td></tr></table></figure>
+
+<p><code>$ nginx -t</code> 確認設定檔沒問題<br><code>$ systemctl restart nginx</code> 來重啟伺服器<br>然後就大公告成了～～<br>明天再來看看有沒有問題</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>server</category>
+      </categories>
+      <tags>
+        <tag>bash</tag>
+        <tag>ddos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx-reverse-proxy-setup</title>
+    <url>/linux/server/nginx-reverse-proxy-setup/</url>
+    <content><![CDATA[<h1 id="nginx-反向代理伺服器-reverse-proxy"><a href="#nginx-反向代理伺服器-reverse-proxy" class="headerlink" title="nginx 反向代理伺服器 (reverse proxy)"></a>nginx 反向代理伺服器 (reverse proxy)</h1><p>之前社網 server 因為學校防火牆限制只能對外開 80 443 兩個 port<br>而且我們只有一個 ip (203.64.138.177)<br>所以要用 reverse proxy 來代理我們的多項服務<br>原本我只會用 apache2<br>後來不知道是不是因為 apache 太肥導致有時候回應時間會很久<br>所以我起了將 proxy server 換成 nginx 的想法  </p>
+<hr>
+<h2 id="reverse-proxy-http"><a href="#reverse-proxy-http" class="headerlink" title="reverse proxy http"></a>reverse proxy http</h2><p>首先是 CGOJ 和 CKCSC URL 兩個服務<br>這兩個比較簡單<br>用下面這個設定檔就可以了</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    <span class="attribute">server_name</span> url.ckcsc.net;</span><br><span class="line">    <span class="attribute">location</span> / &#123; </span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP $remote_addr;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto $http_x_forwarded_proto;</span><br><span class="line">        <span class="attribute">proxy_max_temp_file_size</span> <span class="number">0</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="reverse-proxy-websocket"><a href="#reverse-proxy-websocket" class="headerlink" title="reverse proxy websocket"></a>reverse proxy websocket</h2><p>再來是 <a href="https://github.com/tsl0922/ttyd">ttyd</a><br>這是一個可以把瀏覽器變成 terminal 的一個軟體<br><img data-src="/images/ttyd.png" alt="ttyd"><br>前面說到我們的 server 只有 80 443 可以對外<br>所以按照正常管道我們是沒辦法 ssh 回社辦電腦<br>但是這個軟體可以幫我們突破防火牆<br>因為他就是個 http 網頁啊</p>
+<blockquote>
+<p>　道高一尺魔高一丈</p>
+</blockquote>
+<p>這個之所特別是因為他的網頁和 server 溝通是透過 websocket<br>如果是用剛剛的設定檔他不會代理 ws<br>其實在 apache 就有碰到這個問題<br>那匙後要開啟一個模組<br>而 nginx 則是要在設定檔中新增幾行</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    server_name ttyd.ckcsc.net;</span><br><span class="line">    location / &#123; </span><br><span class="line"></span><br><span class="line">        proxy_pass http://localhost:4000;</span><br><span class="line"></span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;</span><br><span class="line">        proxy_max_temp_file_size 0;</span><br><span class="line">    </span><br><span class="line"><span class="addition">+       proxy_http_version 1.1;</span></span><br><span class="line"><span class="addition">+       proxy_set_header Upgrade $http_upgrade;</span></span><br><span class="line"><span class="addition">+       proxy_set_header Connection &quot;upgrade&quot;;</span></span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嗯就是這麼簡單<br>至於會不會比較快要在觀察看看囉</p>
+<hr>
+<h2 id="certbot"><a href="#certbot" class="headerlink" title="certbot"></a>certbot</h2><p>在裝玩 nginx 和設定完後就要來啟用 https 的藍色小勾勾啦<br>有一個方便的工具 <a href="https://certbot.eff.org/">certbot</a><br>這個設定很簡單官網有說明就不寫了<br>總之啟用後 server 就弄好了！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>server</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>reverse proxy</tag>
+        <tag>certbot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx-ui</title>
+    <url>/linux/server/nginx-ui/</url>
+    <content><![CDATA[<p>前幾天發現一個專案 nginx ui<br>他是一個可以讓你在網頁上更改 nginx config 的專案<br>安裝：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull schenkd/nginx-ui</span><br></pre></td></tr></table></figure>
+
+<p>啟動；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 -v /etc/nginx:/etc/nginx schenkd/nginx-ui</span><br></pre></td></tr></table></figure>
+
+<p>然後打開瀏覽器 <a href="http://localhost:8080">http://localhost:8080</a> 就可以看到管理頁面了<br>很陽春，就是不用 ssh 進 server，沒什麼特點<br>我應該是不會用這套</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>server</category>
+      </categories>
+      <tags>
+        <tag>nginx linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>server-tool</title>
+    <url>/linux/server/server-tool/</url>
+    <content><![CDATA[<h1 id="用-bash-寫-log-分析工具"><a href="#用-bash-寫-log-分析工具" class="headerlink" title="用 bash 寫 log 分析工具"></a>用 bash 寫 log 分析工具</h1><p>因為我們的 server 不知道是為什麼一直受到 DDoS 攻擊<br>我想知道是什麼時段容易受到攻擊和每次多久、來自那個 ip<br>於是我花了一點時間寫了幾個簡單的 script</p>
+<hr>
+<h2 id="先來講我遇到的坑好了"><a href="#先來講我遇到的坑好了" class="headerlink" title="先來講我遇到的坑好了"></a>先來講我遇到的坑好了</h2><h3 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h3><p>過程中遇到一個最大的坑是在 ubuntu 預設的 sh 不是 bash<br>是 dash<br>據說比較情輕薄<br>我在試 bash 中數字的運算比較時踩到這個坑</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a=10</span><br><span class="line">b=6</span><br><span class="line"><span class="keyword">if</span> (( a &gt; b ));</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> yes</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> no</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>因為我在試語法是否正確<br>開了一個新的檔案<br>我懶的 <code>chmod</code> 直接 <code>sh tt.sh</code><br>結果 <code>sh</code> 是 dash<br>dash 沒有支援這個語法<br>然後抓了快 20 分鐘的 bug<br>還是乖乖寫 <code>#!/bin/bash</code> 吧</p>
+<h3 id="floating-point-number"><a href="#floating-point-number" class="headerlink" title="floating point number"></a>floating point number</h3><p>我的 script 中有用浮點數的除法<br>但是 bash 只支援整數<br>所以除出來都是 0<br>這個坑沒有很大<br>很容易解決<br>只要使用 <code>bc</code> 這個指令就可以了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ bc -l &lt;&lt;&lt; <span class="string">&#x27;100/3&#x27;</span></span><br><span class="line">33.33333333333333333333</span><br></pre></td></tr></table></figure>
+
+<h3 id="Associate-array"><a href="#Associate-array" class="headerlink" title="Associate array"></a>Associate array</h3><p>在有一個地方本來要用關聯式陣列來存一些資料<br>在定義關聯是陣列要把 <code>-a</code> 改成 <code>-A</code><br>這邊遇到什麼問題有點忘記了<br>想到再補起來<br>反正最後沒有用關聯式陣列</p>
+<hr>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><p><a href="https://github.com/simba-fs/server-tool">https://github.com/simba-fs/server-tool</a><br>介紹：</p>
+<h3 id="bar-sh"><a href="#bar-sh" class="headerlink" title="bar.sh"></a>bar.sh</h3><p>Draw a bar from data</p>
+<h3 id="count-sh"><a href="#count-sh" class="headerlink" title="count.sh"></a>count.sh</h3><p>Count how many times does each line appear in file</p>
+<h3 id="ip-sh"><a href="#ip-sh" class="headerlink" title="ip.sh"></a>ip.sh</h3><p>Count how many times does each ip send a request</p>
+<h3 id="time-sh"><a href="#time-sh" class="headerlink" title="time.sh"></a>time.sh</h3><p>Count how many request in each secend/minute/hour/day</p>
+<h3 id="好站連結"><a href="#好站連結" class="headerlink" title="好站連結"></a>好站連結</h3><p><a href="https://www.regextester.com/">https://www.regextester.com/</a><br>這個網站可以測試 RegEx<br>蠻不錯的</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>server</category>
+      </categories>
+      <tags>
+        <tag>bash</tag>
+        <tag>RegEx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>firefox touch screen scroll</title>
+    <url>/linux/software/firefox-touch-screen-scroll/</url>
+    <content><![CDATA[<p>再換了觸控筆電後，在 firefox 一直有個問題：觸控往下滑會被當成選取，要卷動一定要用右邊的 scroll bar</p>
+<h1 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h1><p>按照 <a href="https://askubuntu.com/questions/853910/ubuntu-16-and-touchscreen-scrolling-in-firefox">https://askubuntu.com/questions/853910/ubuntu-16-and-touchscreen-scrolling-in-firefox</a> 的最佳解法，真的加上 <code>MOZ_USE_XINPUT2=1</code> 的環境變數就可以了。<br>另外在設定 <code>~/.local/share/applications/firefox.desktop</code> 的時候要注意有不只一個 Exec，改完如果沒有生效可以重開機看看。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>software</category>
+      </categories>
+      <tags>
+        <tag>firefox</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>libreoffice-code-format-plugin-install</title>
+    <url>/linux/software/libreoffice-code-format-plugin-install/</url>
+    <content><![CDATA[<h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><ol>
+<li>去 <a href="https://extensions.libreoffice.org/en/extensions/show/code-highlighter">https://extensions.libreoffice.org/en/extensions/show/code-highlighter</a> 下載最新的外掛</li>
+<li>把檔名前面的前綴刪掉，<blockquote>
+<p>例如：<code>ea4db15f_codehighlighter.oxt</code> -&gt; <code>codehighlighter.oxt</code></p>
+</blockquote>
+</li>
+<li>安裝相依性套件  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install libreoffice-script-provider-python python3-pip</span><br><span class="line">sudo pip3 install pygments</span><br></pre></td></tr></table></figure></li>
+<li>安裝外掛  <blockquote>
+<p>工具 &gt; 擴充套件管理員 &gt; 加入 &gt; 選擇你的檔案</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><ol>
+<li>插入文字方塊  <blockquote>
+<p>插入 &gt; 文字方塊</p>
+</blockquote>
+</li>
+<li>貼上程式碼</li>
+<li>選擇文字方塊，不是文字（按文字方塊的邊邊）</li>
+<li>format  <blockquote>
+<p>工具 &gt; highlight code &gt; 選得語言、style</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://extensions.libreoffice.org/en/extensions/show/code-highlighter">Libreoffice extensions</a><br><a href="https://github.com/slgobinath/libreoffice-code-highlighter/issues/29#issuecomment-635216707">issue</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>software</category>
+      </categories>
+      <tags>
+        <tag>libreoffice</tag>
+        <tag>code format</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>logitech-mouse-permission-error</title>
+    <url>/linux/software/logitech-mouse-permission-error/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我的無線華和滑鼠和鍵盤都是羅技的，在我的 Ubuntu 筆電上一直都沒有問題。有一次我想改我的鍵盤被配置，但是因為 logitech unifying 沒有 Linux 版，所以我另一個軟體叫 solaar，功能是差不多的。<br>當我裝好軟體以後，鍵盤滑鼠操作都沒問題，只有插上滑鼠的接收器以後都對跳出一個 permission error 的錯誤視窗。雖然在 solaar 裡面就無法看到我的滑鼠就是了，但是完全不影響使用，所以我就擺在那邊放它爛，反正就是多按一個叉叉。</p>
+<h1 id="嘗試自己解"><a href="#嘗試自己解" class="headerlink" title="嘗試自己解"></a>嘗試自己解</h1><p>今天閒閒沒事做剛好來看看這個怎麼解。我一開始想說，把他的 permission 改成和鍵盤一樣就啦！於是我進行了下面的操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /dev/hidraw*</span><br></pre></td></tr></table></figure>
+<p>拔下鍵盤的接收器，發現他是 <code>/dev/hidraw4</code> 和 <code>/dev/hidraw5</code>，再插上去。拔下滑鼠接收器，發現他是 <code>/dev/hidraw2</code>。<br>並找到鍵盤的權限是 <code>rw-rw----</code>，滑鼠是 <code>rw-------</code>。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 660 /dev/hidraw2</span><br></pre></td></tr></table></figure>
+<p>拔下滑鼠接收器，插上。<br>沒用。</p>
+<p>我猜這個方法會失敗應該是因為他在我改之前就已經先跳錯誤了，等我改完它右沒有偵測，我就得把它拔下來在插上去，我又會看到錯誤訊息…… (looping<br>於是我上網找答案</p>
+<h1 id="網路上的解"><a href="#網路上的解" class="headerlink" title="網路上的解"></a>網路上的解</h1><p>我 Google <code>ubuntu logitech permission error</code> 第一個就是我要的！</p>
+<hr>
+<ol>
+<li>Make sure all required libraries are installed.</li>
+<li>As root, create the file /etc/udev/rules.d/42-logitech-unifying-receiver.rules and open it in your favorite text editor.</li>
+<li>Paste in the contents of the udev rules from the <a href="https://raw.githubusercontent.com/pwr/Solaar/master/rules.d/42-logitech-unify-permissions.rules">github repository</a> and save the file.</li>
+<li>Physically remove the receiver and re-insert it.</li>
+</ol>
+<hr>
+<ol>
+<li>確認相依性套件都安裝了</li>
+<li>建立 <code>/etc/udev/rules.d/42-logitech-unifying-receiver.rules</code> 並用你喜歡的編輯器打開它（都要 root 權限）</li>
+<li>貼上<a href="https://raw.githubusercontent.com/pwr/Solaar/master/rules.d/42-logitech-unify-permissions.rules">這個網址</a>的內容，儲存並離開。</li>
+<li>拔掉接收器並重新插上。</li>
+</ol>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://askubuntu.com/questions/588197/solaar-loses-permissions-after-reboot-need-to-unplug-unifying-receiver-each-ti">https://askubuntu.com/questions/588197/solaar-loses-permissions-after-reboot-need-to-unplug-unifying-receiver-each-ti</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>software</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>logitech</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YouComopleteMe install</title>
+    <url>/linux/vim/YouComopleteMe-install/</url>
+    <content><![CDATA[<h1 id="下載-source-code"><a href="#下載-source-code" class="headerlink" title="下載 source code"></a>下載 source code</h1><ol>
+<li>編輯 ~/.vimrc<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">Plug <span class="string">&#x27;Valloric/YouCompleteMe&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>接著按下 <kbd>esc</kbd> <kbd>:w | so %</kbd> 載入設定</li>
+<li>接著 <kbd>:PlugInstall</kbd> 下載 source code</li>
+<li>存檔離開</li>
+</ol>
+<h1 id="編譯"><a href="#編譯" class="headerlink" title="編譯"></a>編譯</h1><ol>
+<li>執行 <code>sudo apt install python3-dev build-essential</code></li>
+<li>進入 <code>~/.vim/plugged/YouCompleteMe</code> </li>
+<li>執行 <code>./install.py --help</code> 並挑選需要的選項</li>
+<li>執行 <code>./install.py &lt;你要的選項&gt;</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>vim</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>YCM</tag>
+        <tag>complete</tag>
+        <tag>completing</tag>
+        <tag>dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim auto comment plugin</title>
+    <url>/linux/vim/vim-auto-comment-plugin/</url>
+    <content><![CDATA[<h1 id="套件"><a href="#套件" class="headerlink" title="套件"></a>套件</h1><p><a href="https://github.com/preservim/nerdcommenter">nerdcommenter</a></p>
+<h1 id="好用的指令"><a href="#好用的指令" class="headerlink" title="好用的指令"></a>好用的指令</h1><p>在每次動作前都要按 <code>&lt;leader&gt;</code>，預設是 反斜線 <code>\</code>  </p>
+<h2 id="c-lt-space-gt"><a href="#c-lt-space-gt" class="headerlink" title="c&lt;space&gt;"></a><code>c&lt;space&gt;</code></h2><p>簡單來說就是 toggle 你的註解  </p>
+<h2 id="cA"><a href="#cA" class="headerlink" title="cA"></a><code>cA</code></h2><p>跳到行尾並在行尾加上註解</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>vim</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>讓 YCM 接受 jsx</title>
+    <url>/linux/vim/%E8%AE%93-YCM-%E6%8E%A5%E5%8F%97-jsx/</url>
+    <content><![CDATA[<p>最近寫ˋreact 的時候只要遇到 jsx 語法 YCM 就會跳出這個錯誤</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cannot use JSX unless the &#x27;--jsx&#x27; flag is provided. (FixIt)</span><br></pre></td></tr></table></figure>
+<p>研究之後發現這是要給 tsserver 一個 <code>--jsx</code> 的 flag 就可以解決<br>爬文半個小時後發現只要在專案下的 <code>jsconfig.json</code></p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;es6&quot;,</span><br><span class="line">    &quot;checkJs&quot;: true</span><br><span class="line"><span class="addition">+ &#125;,</span></span><br><span class="line"><span class="addition">+ &quot;compilerOptions&quot;: &#123;</span></span><br><span class="line"><span class="addition">+   &quot;jsx&quot;: &quot;react&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>vim</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>jsx</tag>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>blessed-contrib-tree</title>
+    <url>/nodejs/blessed/blessed-contrib-tree/</url>
+    <content><![CDATA[<h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><p>想說先想一個專案來練練手<br>熟悉一下 blessed<br>突然看到 blessed-contrib 裡有個元件叫 <code>tree</code><br>想說可以做成 JSON viewer<br>於是就開工了！</p>
+<p>其中最重要的部份就是搞定樹狀結構<br>因為他有特定的格式和選項<br>下面是官方的範例</p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">extended</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">children</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;Fruit&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">children</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Banana&#x27;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&#x27;Apple&#x27;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&#x27;Cherry&#x27;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&#x27;Exotics&#x27;</span>: &#123;</span><br><span class="line">          <span class="attr">children</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;Mango&#x27;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&#x27;Papaya&#x27;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&#x27;Kiwi&#x27;</span>: &#123;</span><br><span class="line">              <span class="attr">name</span>: <span class="string">&#x27;Kiwi(notthebird!)&#x27;</span>,</span><br><span class="line">              <span class="attr">myCustomProperty</span>: <span class="string">&quot;hairyfruit&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;Pear&#x27;</span>: &#123;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;Vegetables&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">children</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Peas&#x27;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&#x27;Lettuce&#x27;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&#x27;Pepper&#x27;</span>: &#123;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每個節點都是物件<br>他的子節點存在 <code>children</code> 裡<br>如果是空物件代表這是葉節點<br><code>extended</code> 屬性是是否展開，預設 <code>true</code><br><code>name</code> 是顯示出來的字，如果要改再設，預設是 <code>index</code><br><code>myCustomProperty</code> 直翻是自訂屬性，應該是當 <code>tree.on(&#39;select&#39;)</code> 觸發時傳進去的</p>
+<hr>
+<p>瞭解了結構之後就要來把一般的 JSON 轉換成樹狀結構啦<br>我寫了一個 <code>treetify</code> 函式來做轉換<br>還沒有做的很好<br>有待改進</p>
+<h2 id="第一版-2020-02-19"><a href="#第一版-2020-02-19" class="headerlink" title="第一版 2020-02-19"></a>第一版 2020-02-19</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treetify</span>(<span class="params">data, result</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!result)&#123;</span><br><span class="line">        result = &#123; </span><br><span class="line">            <span class="attr">extended</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">children</span>: &#123;&#125;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(data))&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> data)&#123;</span><br><span class="line">            result.children[i] = &#123;&#125;; </span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">if</span>([<span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;boolean&#x27;</span>].includes(<span class="keyword">typeof</span> data))&#123;</span><br><span class="line">        result.children[data] = &#123;&#125;; </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> data)&#123;</span><br><span class="line">        result.children[i] = treetify(data[i]);</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一部份是我覺得沒有寫很好的地方<br>感覺沒什麼用但是刪掉就出錯了，應該是物件參考的問題<br>第二部份針對陣列進行別處理<br>第三部份是處理非物件的值<br>第四部份是處理一般物件<br>他會把物件的成員迭代一遍，再把他們分別丟給 <code>treetify</code> 做展開</p>
+<h2 id="更新-第二版-2020-02-20"><a href="#更新-第二版-2020-02-20" class="headerlink" title="更新 第二版 2020-02-20"></a>更新 第二版 2020-02-20</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">data</span>)</span>&#123;       </span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(data)) <span class="keyword">return</span> <span class="string">&#x27;array&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> data == <span class="string">&#x27;object&#x27;</span>) <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span>;        </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> data;          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treetify</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = &#123;</span><br><span class="line">    <span class="attr">children</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> data)&#123;</span><br><span class="line">    <span class="keyword">if</span>([<span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;boolean&#x27;</span>].includes(type(data[i])))&#123;</span><br><span class="line">      result.children[<span class="string">`<span class="subst">$&#123;i&#125;</span>: &#x27;<span class="subst">$&#123;data[i]&#125;</span>&#x27;`</span>] = &#123;&#125;;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      result.children[<span class="string">`<span class="subst">$&#123;i&#125;</span>: <span class="subst">$&#123;type(data[i])&#125;</span>`</span>] = treetify(data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">arguments</span>.callee.caller != treetify)&#123;</span><br><span class="line">    result.extended = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一個函式就是回傳傳入物件的型態，直接 <code>typeof data</code> 物件和陣列都會回傳 <code>object</code><br>第二個就是直接迭代<br>然後如果是物件或陣列的話就去遞迴<br>否則就加一個子節點<br>最後如果呼叫者和自己不是同一個函數（這是根節點、不是遞迴的呼叫）就把他展開</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>blessed</category>
+      </categories>
+      <tags>
+        <tag>blessed</tag>
+        <tag>blessed-contrib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>blessed-landmine</title>
+    <url>/nodejs/blessed/blessed-landmine/</url>
+    <content><![CDATA[<p>這是一篇我在用 blessed 時踩的一些雷<br>會持續的更新</p>
+<h2 id="1-記得-render"><a href="#1-記得-render" class="headerlink" title="1. 記得 render"></a>1. 記得 render</h2><p>今天在寫 API 時踩到兩次<br>更新了資料卻沒有 render<br>例如 <code>textarea.setValue()</code> 這個函式設定完之後他畫面不會更新<br>要自己 render</p>
+<h2 id="2-textarea-setValue-只接受字串當參數"><a href="#2-textarea-setValue-只接受字串當參數" class="headerlink" title="2. textarea.setValue() 只接受字串當參數"></a>2. <code>textarea.setValue()</code> 只接受字串當參數</h2><p>我個人覺得 blessed 缺少一個像是 jquery 的函式庫<br>沒有一個很好的 API 包裝<br>例如說這個函式 <code>textarea.setValue()</code> 就只吃字串<br>因為他用了 String.prototype.replace 這個函數<br>而且他沒有一個很好的防呆機制例如參數型別檢查<br>幸好是他的程式碼沒有做 uglify<br>還算簡單易懂<br>而且 node 的錯誤訊息的 stack 可以引導到真正出錯的地方</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>blessed</category>
+      </categories>
+      <tags>
+        <tag>blessed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>blessed</title>
+    <url>/nodejs/blessed/blessed/</url>
+    <content><![CDATA[<p>某天我有一個問題<br>gtop 的圖畫界面是怎麼做的，我知道他是用 node 寫的，對他別有興趣<br>我上 github 看他的 package.json<br>發現他的 depandence 只有三個</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">	<span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;blessed&quot;</span>: <span class="string">&quot;^0.1.81&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;blessed-contrib&quot;</span>: <span class="string">&quot;^4.8.16&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;systeminformation&quot;</span>: <span class="string">&quot;^4.14.4&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>其中 <code>systeminformation</code> 很顯然是取得系統資訊<br>那 GUI 的 library 應該就是 <code>blessed</code> 和 <code>blessed-contrib</code> 了<br>去 <code>blessed</code> 的 github 看看<br>沒想到這是一個超強大的函式庫<br>可是網路上的教學卻很少<br>只好自己看 docs 啦</p>
+<p>接下來是我測試的一些程式碼和截圖</p>
+<hr>
+<h2 id="第一份-code"><a href="#第一份-code" class="headerlink" title="第一份 code"></a>第一份 code</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> blessed = <span class="built_in">require</span>(<span class="string">&#x27;blessed&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> screen = blessed.screen(&#123;</span><br><span class="line">	<span class="attr">smartCSR</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">debug</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> box = blessed.box(&#123;</span><br><span class="line">	<span class="attr">content</span>: <span class="string">&#x27;Hello world&#x27;</span>,</span><br><span class="line">	<span class="attr">border</span>: &#123;</span><br><span class="line">		<span class="attr">fg</span>: <span class="string">&#x27;#0000FF&#x27;</span>,</span><br><span class="line">		<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span></span><br><span class="line">	&#125;	 </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Key events</span></span><br><span class="line">screen.key([<span class="string">&#x27;escape&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;C-c&#x27;</span>], <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> process.exit(<span class="number">0</span>);</span><br><span class="line">&#125;);</span><br><span class="line">screen.append(box);</span><br><span class="line"></span><br><span class="line">screen.render();</span><br></pre></td></tr></table></figure>
+<p><img data-src="/images/blessed/hello-world.png" alt="hello world"></p>
+<p>第 2 行先建立一個 screen<br>第 3 行據說可以優化渲染結果<br>第 4 行開啟 debug 模式，可以開啟一個 log 視窗（<code>&lt;F12&gt;</code>）<br>第 7 行建立一個 box<br>第 8 行指定內文<br>第 9 ~ 12 行指定邊界樣式，還沒找到 type 可以填什麼<br>第 16 ~ 18 行設定當按下 <code>esc</code> <code>q</code> <code>C-c</code> 時結束程式，如果沒寫這個按 <code>C-c</code> <code>C-z</code> 也沒用<br>第 19 行將 <code>box</code> 加入 <code>screen</code><br>第 20 行渲染視窗</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>blessed</category>
+      </categories>
+      <tags>
+        <tag>blessed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>blessed切換畫面</title>
+    <url>/nodejs/blessed/blessed%E5%88%87%E6%8F%9B%E7%95%AB%E9%9D%A2/</url>
+    <content><![CDATA[<p>今天完成了新版本的 <code>treetify</code> <a href="/2020/02/18/blessed-contrib-tree/">看這</a><br>同時我設計好了右邊的 <code>edit</code><br>但是我的問題是他要根據情況不同切換不同的頁面<br>來看看我的一些想法：</p>
+<ol>
+<li>從 <code>screen.children[2]</code> 把他會掉，可是會出錯不行</li>
+<li>有一個元件 <code>Carousel</code> 好像可以但是他其實是用方向鍵控制所以也不行</li>
+<li>終於我想了一個方法，接下來來介紹<br>這是測試程式碼<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> blessed = <span class="built_in">require</span>(<span class="string">&#x27;blessed&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> contrib = <span class="built_in">require</span>(<span class="string">&#x27;blessed-contrib&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> screen = blessed.screen(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;JSON viewer&#x27;</span>,</span><br><span class="line">        <span class="attr">debug</span>: <span class="literal">true</span> </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> grid = <span class="keyword">new</span> contrib.grid(&#123;</span><br><span class="line">        <span class="attr">rows</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">cols</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">screen</span>: screen</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tree = grid.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, blessed.box, &#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Tree&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Tree&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> edit = grid.set(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, blessed.box, &#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Edit&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Edit&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> box2 = blessed.box(&#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Box2&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Box2&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> box3 = blessed.box(&#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Box3&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Box3&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> box4 = blessed.box(&#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Box4&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Box4&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> box5 = blessed.box(&#123;</span><br><span class="line">        <span class="attr">border</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;Box5&#x27;</span>,</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Box5&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">edit.append(box2);</span><br><span class="line">edit.append(box3);</span><br><span class="line">edit.append(box4);</span><br><span class="line">edit.append(box5);</span><br><span class="line">edit.append(box2);</span><br><span class="line">edit.append(box3);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(edit.children));</span><br><span class="line"></span><br><span class="line">screen.key([<span class="string">&#x27;escape&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;C-c&#x27;</span>], <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        process.exit(<span class="number">0</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">tree.focus();</span><br><span class="line"></span><br><span class="line">screen.key([<span class="string">&#x27;tab&#x27;</span>, <span class="string">&#x27;t&#x27;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">ch, key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(screen.focused == tree.rows)</span><br><span class="line">    edit.focus();</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    tree.focus();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">screen.render();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>這裡建立三個 <code>box</code> 要顯示哪一個的時候就將他 append<br>實驗證實這樣不會建立新的圖層<br>而是把下面的那個搬到最上面<br>完美的解決了這個問題</p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>blessed</category>
+      </categories>
+      <tags>
+        <tag>blessed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React update state on props change</title>
+    <url>/nodejs/react/React-update-state-on-props-change/</url>
+    <content><![CDATA[<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p>今天在研究 React<br>遇到一個問題<br>當我從外面更新 props 的時候 component 內的 state 不會更新</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [text, setText] = React.useState(props.text);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		<span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&#123;text&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">	)</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如同上面程式，第二行的 <code>useState</code> 不會隨著 props 更新而更新</p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>後來找到解法，加上一個 <code>useEffect</code> 監聽 <code>props.text</code> 然後更新 state 就好了</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [text, setText] = React.useState(props.text);</span><br><span class="line">	React.useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		setText(props.text);</span><br><span class="line">	&#125;, [props.text]);</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		<span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&#123;text&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">	)</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如此一來 <code>state</code> 就會和 <code>props</code> 同步了</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://stackoverflow.com/questions/54865764/react-usestate-does-not-reload-state-from-props">https://stackoverflow.com/questions/54865764/react-usestate-does-not-reload-state-from-props</a><br><a href="https://zh-hant.reactjs.org/docs/hooks-effect.html">https://zh-hant.reactjs.org/docs/hooks-effect.html</a></p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack-react</title>
+    <url>/nodejs/react/webpack-react/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近開始想學 react<br>在這之前當然要先把開發環境搞好<br>其中 react 最重要的就是 webpack 和 babel 了<br>babel 負責編譯<br>webpack 負責串街所有工作</p>
+<h1 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h1><h2 id="建立一個專案並初始化"><a href="#建立一個專案並初始化" class="headerlink" title="建立一個專案並初始化"></a>建立一個專案並初始化</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir react-test</span><br><span class="line">cd react-test</span><br><span class="line">npm init -y</span><br><span class="line">git init -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝開發用套件"><a href="#安裝開發用套件" class="headerlink" title="安裝開發用套件"></a>安裝開發用套件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -D \</span><br><span class="line">	@babel/core \</span><br><span class="line">	@babel/cli \</span><br><span class="line">	@babel/preset-env \</span><br><span class="line">	@babel/preset-react \</span><br><span class="line">	babel-loader \</span><br><span class="line">	react \</span><br><span class="line">	react-dom \</span><br><span class="line">	webpack</span><br></pre></td></tr></table></figure>
+
+<h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h2><p>加入以下的 script</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;dev&quot;</span>: <span class="string">&quot;webpack --mode development&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;watch&quot;</span>: <span class="string">&quot;webpack --mode development --watch&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;depoly&quot;</span>: <span class="string">&quot;webpack --mode production&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h2><p>建立 webpack.config.js<br>這是最小的版本了<br>沒有任何的擴充</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(js|jsx)$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&quot;babel-loader&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-dist"><a href="#src-dist" class="headerlink" title="src/dist"></a>src/dist</h2><pre><code>mkdir src dist
+接下來可以把所有的 js 原始碼放在 src/ 下
+html template 放在 dist/ 下
+
+# 範例
+https://github.com/simba-fs/react-template
+</code></pre>]]></content>
+      <categories>
+        <category>nodejs</category>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>reactjs</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+</search>
